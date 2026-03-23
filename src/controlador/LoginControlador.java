@@ -8,7 +8,7 @@ public class LoginControlador {
 	UsuarioDAO dao = new ImplementacionBD();
 
 	public void visualizarPantalla() {
-		VentanaLogin ven = new VentanaLogin(this);
+		VentanaLogin ven = new VentanaLogin(this); // cambiar VentanaLogin a la ventana inicial esto era una prueba
 		ven.setVisible(true);	
 	}
 }

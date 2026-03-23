@@ -5,7 +5,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
@@ -16,13 +15,14 @@ import controlador.LoginControlador;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
 
 import java.awt.Toolkit;
 
-public class VentanaLogin extends JFrame implements ActionListener{
+public class VentanaLogin extends JDialog implements ActionListener{
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -39,7 +39,7 @@ public class VentanaLogin extends JFrame implements ActionListener{
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\1dami.TARTANGALH\\Desktop\\IMG Reto 3 eva Kasinoa\\R.png"));
 		this.cont=controlador;
 		setTitle("Register");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);		
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -93,6 +93,7 @@ public class VentanaLogin extends JFrame implements ActionListener{
 		contentPane.add(Contarseña);
 
 		lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1.setBounds(78, 240, 274, 23);
 		contentPane.add(lblNewLabel_1);
 		
