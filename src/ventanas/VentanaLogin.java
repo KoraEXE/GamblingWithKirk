@@ -140,7 +140,6 @@ public class VentanaLogin extends JDialog implements ActionListener{
 			campoContrasenaVisible.setText(campoContrasena.getText());
 			campoContrasenaVisible.setVisible(mostrar);
 			campoContrasena.setVisible(!mostrar);
-
 		}
 	}
 }
