@@ -133,7 +133,7 @@ public class VentanaLogin extends JDialog implements ActionListener{
 			} else {
 				lblNewLabel_1.setText("Datos correctos");
 				// aquí llamar al controlador		    
-			}
+			} 
 		}
 		if (e.getSource() == mostrarContrasena) {
 			boolean mostrar = mostrarContrasena.isSelected();

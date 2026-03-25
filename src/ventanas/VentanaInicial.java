@@ -19,7 +19,7 @@ import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
-import javax.swing.JCheckBox;
+import javax.swing.JCheckBox; 
 
 public class VentanaInicial extends JFrame implements ActionListener{
 
