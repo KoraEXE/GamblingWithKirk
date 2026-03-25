@@ -49,6 +49,7 @@ public class SelecionJuego extends JDialog implements ActionListener {
 			cerrarSesion = new JButton("3. CERRAR SESIÓN");
 			cerrarSesion.setBounds(140, 165, 154, 20);
 			contentPanel.add(cerrarSesion);
+			cerrarSesion.addActionListener(this);
 		}
 		{
 			borrar = new JButton("4. BORRAR");
@@ -82,6 +83,11 @@ public class SelecionJuego extends JDialog implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
+		if(e.getSource()==cerrarSesion) {
+			VentanaInicial vI=new VentanaInicial();
+			vI.setVisible(true);
+			this.dispose();
+		}
 	}
 }
 
