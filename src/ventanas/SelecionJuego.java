@@ -27,6 +27,7 @@ public class SelecionJuego extends JDialog implements ActionListener {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
+		
 		{
 			JLabel lblNewLabel = new JLabel("");
 			lblNewLabel.setBounds(140, 25, 154, 66);

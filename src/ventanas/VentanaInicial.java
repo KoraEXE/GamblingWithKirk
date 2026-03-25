@@ -36,7 +36,6 @@ public class VentanaInicial extends JFrame implements ActionListener{
 	private JTextField campoContrasenaVisible;
 	private JLabel lblNewLabel_4;
 
-
 	public VentanaInicial() {
 		setTitle("Ventana Inicial");
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\1dami.TARTANGALH\\Desktop\\IMG Reto 3 eva Kasinoa\\Isr.jpg"));
