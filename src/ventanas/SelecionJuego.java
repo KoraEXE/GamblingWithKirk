@@ -14,6 +14,15 @@ import javax.swing.JTextField;
 public class SelecionJuego extends JDialog implements ActionListener {
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
+	private JButton blackJack;
+	private JButton stats;
+	private JButton cerrarSesion;
+	private JButton borrar;
+	private JButton pray;
+
+
+
+
 	public SelecionJuego() {
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
@@ -28,29 +37,29 @@ public class SelecionJuego extends JDialog implements ActionListener {
 			contentPanel.add(lblNewLabel);
 		}
 		{
-			JButton btnNewButton = new JButton("1. BLACK JACK");
-			btnNewButton.setBounds(140, 115, 154, 20);
-			contentPanel.add(btnNewButton);
+			blackJack = new JButton("1. BLACK JACK");
+			blackJack.setBounds(140, 115, 154, 20);
+			contentPanel.add(blackJack);
 		}
 		{
-			JButton btnNewButton_1 = new JButton("2. STATS");
-			btnNewButton_1.setBounds(140, 140, 154, 20);
-			contentPanel.add(btnNewButton_1);
+			stats = new JButton("2. STATS");
+			stats.setBounds(140, 140, 154, 20);
+			contentPanel.add(stats);
 		}
 		{
-			JButton btnNewButton_2 = new JButton("3. CERRAR SESIÓN");
-			btnNewButton_2.setBounds(140, 165, 154, 20);
-			contentPanel.add(btnNewButton_2);
+			cerrarSesion = new JButton("3. CERRAR SESIÓN");
+			cerrarSesion.setBounds(140, 165, 154, 20);
+			contentPanel.add(cerrarSesion);
 		}
 		{
-			JButton btnNewButton_3 = new JButton("4. BORRAR");
-			btnNewButton_3.setBounds(140, 190, 154, 20);
-			contentPanel.add(btnNewButton_3);
+			borrar = new JButton("4. BORRAR");
+			borrar.setBounds(140, 190, 154, 20);
+			contentPanel.add(borrar);
 		}
 		{
-			JButton btnNewButton_4 = new JButton("5. PRAY");
-			btnNewButton_4.setBounds(140, 215, 154, 20);
-			contentPanel.add(btnNewButton_4);
+			pray = new JButton("5. PRAY");
+			pray.setBounds(140, 215, 154, 20);
+			contentPanel.add(pray);
 		}
 		{
 			JLabel lblNewLabel_1 = new JLabel("");
