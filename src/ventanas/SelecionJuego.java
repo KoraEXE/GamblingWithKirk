@@ -39,6 +39,7 @@ public class SelecionJuego extends JDialog implements ActionListener {
 			blackJack = new JButton("1. BLACK JACK");
 			blackJack.setBounds(140, 115, 154, 20);
 			contentPanel.add(blackJack);
+			this.blackJack.addActionListener(this);
 		}
 		{
 			stats = new JButton("2. STATS");
@@ -78,6 +79,8 @@ public class SelecionJuego extends JDialog implements ActionListener {
 		Fondo.setIcon(new ImageIcon("C:\\\\Users\\\\1dami.TARTANGALH\\\\Desktop\\\\IMG Reto 3 eva Kasinoa\\fondo2.png"));
 		Fondo.setBounds(0, 0, 436, 263);
 		contentPanel.add(Fondo);
+		
+		
 
 	}
 	@Override
@@ -85,6 +88,12 @@ public class SelecionJuego extends JDialog implements ActionListener {
 		// TODO Auto-generated method stub
 		if(e.getSource()==cerrarSesion) {
 			VentanaInicial vI=new VentanaInicial();
+			vI.setVisible(true);
+			this.dispose();
+		}
+		
+		if (e.getSource()==blackJack) {
+			Victoria vI=new Victoria();
 			vI.setVisible(true);
 			this.dispose();
 		}
