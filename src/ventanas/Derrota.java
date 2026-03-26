@@ -12,21 +12,22 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import java.awt.Toolkit;
+import javax.swing.SwingConstants;
+import java.awt.Color;
 
-public class Victoria extends JDialog implements ActionListener {
+public class Derrota extends JDialog implements ActionListener {
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private JLabel miniIcono;
 	private JLabel TextoGanado;
 	private JButton SeguirJugando;
-	private JButton PerderLaRacha;
-	private JLabel Fondo;
 
 
-	public Victoria() {
+	public Derrota() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage("imagenes/miniIconoV2.png"));
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBackground(new Color(0, 0, 0));
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
@@ -37,25 +38,19 @@ public class Victoria extends JDialog implements ActionListener {
 		contentPanel.add(miniIcono);
 
 		TextoGanado = new JLabel("");
-		TextoGanado.setIcon(new ImageIcon("C:\\Users\\1dami\\git\\GamblingWithKirk\\imagenes\\HasGanado (1).png"));
-		TextoGanado.setBounds(0, 0, 221, 263);
+		TextoGanado.setHorizontalAlignment(SwingConstants.CENTER);
+		TextoGanado.setIcon(new ImageIcon("C:\\Users\\1dami\\git\\GamblingWithKirk\\imagenes\\HasMuertoV2.png"));
+		TextoGanado.setBounds(0, 0, 436, 144);
 		contentPanel.add(TextoGanado);
 
 		SeguirJugando = new JButton("");
-		SeguirJugando.setIcon(new ImageIcon("C:\\Users\\1dami\\git\\GamblingWithKirk\\imagenes\\SeguirGanandoV2 (1).png"));
-		SeguirJugando.setBounds(231, 95, 188, 28);
+		SeguirJugando.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		SeguirJugando.setIcon(new ImageIcon("imagenes/SeguirGanandoV2 (1).png"));
+		SeguirJugando.setBounds(128, 195, 188, 28);
 		contentPanel.add(SeguirJugando);
-		
-		PerderLaRacha = new JButton("");
-		PerderLaRacha.setIcon(new ImageIcon("C:\\Users\\1dami\\git\\GamblingWithKirk\\imagenes\\PerderRacha.png"));
-		PerderLaRacha.setBounds(231, 160, 188, 28);
-		contentPanel.add(PerderLaRacha);
-		this.PerderLaRacha.addActionListener(this);
-
-		Fondo = new JLabel("");
-		Fondo.setIcon(new ImageIcon("C:\\Users\\1dami\\git\\GamblingWithKirk\\imagenes\\FondoDeVictoria.png"));
-		Fondo.setBounds(0, 0, 436, 263);
-		contentPanel.add(Fondo);
 
 		
 			
@@ -65,13 +60,6 @@ public class Victoria extends JDialog implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		//si se pulsa el boton de perder la racha se cierra la ventana y vuelve a la ventana de seleccion de juego
-		if(e.getSource()==PerderLaRacha) {
-			SelecionJuego sJ=new SelecionJuego();
-			sJ.setVisible(true);
-			this.dispose();
-		}
 
 	}
 }

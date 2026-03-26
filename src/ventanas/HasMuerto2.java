@@ -13,7 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import java.awt.Toolkit;
 
-public class Victoria extends JDialog implements ActionListener {
+public class HasMuerto2 extends JDialog implements ActionListener {
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private JLabel miniIcono;
@@ -23,7 +23,7 @@ public class Victoria extends JDialog implements ActionListener {
 	private JLabel Fondo;
 
 
-	public Victoria() {
+	public HasMuerto2() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage("imagenes/miniIconoV2.png"));
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
@@ -37,23 +37,23 @@ public class Victoria extends JDialog implements ActionListener {
 		contentPanel.add(miniIcono);
 
 		TextoGanado = new JLabel("");
-		TextoGanado.setIcon(new ImageIcon("C:\\Users\\1dami\\git\\GamblingWithKirk\\imagenes\\HasGanado (1).png"));
+		TextoGanado.setIcon(new ImageIcon("imagenes/HasGanado (1).png"));
 		TextoGanado.setBounds(0, 0, 221, 263);
 		contentPanel.add(TextoGanado);
 
 		SeguirJugando = new JButton("");
-		SeguirJugando.setIcon(new ImageIcon("C:\\Users\\1dami\\git\\GamblingWithKirk\\imagenes\\SeguirGanandoV2 (1).png"));
+		SeguirJugando.setIcon(new ImageIcon("imagenes/SeguirGanandoV2 (1).png"));
 		SeguirJugando.setBounds(231, 95, 188, 28);
 		contentPanel.add(SeguirJugando);
 		
 		PerderLaRacha = new JButton("");
-		PerderLaRacha.setIcon(new ImageIcon("C:\\Users\\1dami\\git\\GamblingWithKirk\\imagenes\\PerderRacha.png"));
+		PerderLaRacha.setIcon(new ImageIcon("imagenes/PerderRacha.png"));
 		PerderLaRacha.setBounds(231, 160, 188, 28);
 		contentPanel.add(PerderLaRacha);
 		this.PerderLaRacha.addActionListener(this);
 
 		Fondo = new JLabel("");
-		Fondo.setIcon(new ImageIcon("C:\\Users\\1dami\\git\\GamblingWithKirk\\imagenes\\FondoDeVictoria.png"));
+		Fondo.setIcon(new ImageIcon("imagenes/FondoDeVictoria.png"));
 		Fondo.setBounds(0, 0, 436, 263);
 		contentPanel.add(Fondo);
 
