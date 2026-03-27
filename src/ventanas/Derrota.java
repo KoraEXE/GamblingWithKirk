@@ -48,8 +48,8 @@ public class Derrota extends JDialog implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		SeguirJugando.setIcon(new ImageIcon("imagenes/SeguirGanandoV2 (1).png"));
-		SeguirJugando.setBounds(120, 168, 213, 44);
+		SeguirJugando.setIcon(new ImageIcon("C:\\Users\\1dami\\git\\GamblingWithKirk\\imagenes\\contiarDespuesDeMorirV3.png"));
+		SeguirJugando.setBounds(114, 168, 244, 44);
 		contentPanel.add(SeguirJugando);
 
 		
