@@ -126,7 +126,13 @@ public class VentanaLogin extends JDialog implements ActionListener{
 		if (e.getSource() == btnLogin) {
 
 			String usuario = campoUsuario.getText();
-			String password = campoContrasena.isVisible() ?/*Cambiar lambda*/ campoContrasena.getText() : campoContrasenaVisible.getText();
+			String password;
+			if (campoContrasena.isVisible()) {
+			    password = campoContrasena.getText();
+			} else {
+			    password = campoContrasenaVisible.getText();
+			}
+
 
 			if (usuario.equals("") || password.equals("") || comboBox.getSelectedIndex() == 0) {
 				lblNewLabel_1.setText("Rellena todos los campos");
