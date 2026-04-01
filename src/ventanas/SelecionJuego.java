@@ -35,25 +35,25 @@ public class SelecionJuego extends JDialog implements ActionListener {
 		
 		{
 			JLabel lblNewLabel = new JLabel("");
-			lblNewLabel.setBounds(665, 94, 568, 129);
-			lblNewLabel.setIcon(new ImageIcon("imagenes/SelecionJuego.png"));
+			lblNewLabel.setBounds(661, 0, 581, 387);
+			lblNewLabel.setIcon(new ImageIcon("C:\\Users\\koraw\\git\\GamblingWithKirk\\imagenes\\SelecionaJuego V1.png"));
 			lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 			contentPanel.add(lblNewLabel);
 		}
 		{
 			blackJack = new JButton("1. BLACK JACK");
-			blackJack.setBounds(773, 271, 357, 71);
+			blackJack.setBounds(773, 469, 357, 71);
 			contentPanel.add(blackJack);
 			this.blackJack.addActionListener(this);
 		}
 		{
 			stats = new JButton("2. STATS");
-			stats.setBounds(773, 367, 357, 71);
+			stats.setBounds(773, 551, 357, 71);
 			contentPanel.add(stats);
 		}
 		{
 			cerrarSesion = new JButton("3. CERRAR SESIÓN");
-			cerrarSesion.setBounds(773, 449, 357, 71);
+			cerrarSesion.setBounds(773, 633, 357, 71);
 			contentPanel.add(cerrarSesion);
 			cerrarSesion.addActionListener(this);
 		}
@@ -63,23 +63,23 @@ public class SelecionJuego extends JDialog implements ActionListener {
 				public void actionPerformed(ActionEvent e) {
 				}
 			});
-			borrar.setBounds(773, 531, 357, 71);
+			borrar.setBounds(773, 715, 357, 71);
 			contentPanel.add(borrar);
 		}
 		{
 			pray = new JButton("5. PRAY");
-			pray.setBounds(773, 613, 357, 71);
+			pray.setBounds(773, 797, 357, 71);
 			contentPanel.add(pray);
 		}
 		{
 			JLabel lblNewLabel_1 = new JLabel("");
-			lblNewLabel_1.setIcon(new ImageIcon("imagenes/Jimbo2 ORIGINAL.jpg"));
-			lblNewLabel_1.setBounds(0, 0, 655, 1041);
+			lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\koraw\\git\\GamblingWithKirk\\imagenes\\Balatro2.png"));
+			lblNewLabel_1.setBounds(0, 0, 661, 1041);
 			contentPanel.add(lblNewLabel_1);
 		}
 		{
 			JLabel lblNewLabel_1 = new JLabel("");
-			lblNewLabel_1.setIcon(new ImageIcon("imagenes/Jimbo1 ORIGINAL.jpg"));
+			lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\koraw\\git\\GamblingWithKirk\\imagenes\\Balatro1.png"));
 			lblNewLabel_1.setBounds(1243, 0, 661, 1041);
 			contentPanel.add(lblNewLabel_1);
 		}
@@ -102,7 +102,7 @@ public class SelecionJuego extends JDialog implements ActionListener {
 		}
 		
 		if (e.getSource()==blackJack) {
-			Victoria vI=new Victoria();
+			VentanaBlackJack vI=new VentanaBlackJack();
 			vI.setVisible(true);
 			this.dispose();
 		}
