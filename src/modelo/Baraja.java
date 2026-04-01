@@ -119,6 +119,7 @@ public class Baraja implements Serializable {
 			ObjectInputStream ois = new ObjectInputStream(new FileInputStream(RUTA));
 
 			while (cargada == false) {
+				
 				try {
 					Carta c = (Carta) ois.readObject();
 					baraja.add(c);
