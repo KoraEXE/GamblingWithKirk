@@ -35,7 +35,7 @@ public class Baraja implements Serializable {
 	}
 
 	public Baraja(File f, ArrayList<Carta> baraja) {
-		 f = new File(RUTA);
+		f = new File(RUTA);
 
 		if (!f.exists()) {
 			crearYGuardarBaraja(); //si no existe, la crea
@@ -44,7 +44,7 @@ public class Baraja implements Serializable {
 		cargarBaraja(baraja); //siempre la carga
 		barajar();
 	}
-	
+
 	public void crearYGuardarBaraja() {
 		try {
 			ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(RUTA));
@@ -114,30 +114,26 @@ public class Baraja implements Serializable {
 
 	public void cargarBaraja(ArrayList<Carta> baraja) {
 		boolean cargada = false;
+		baraja.clear(); //Limpiar el arraylist (boom)
 
-		try {
-			ObjectInputStream ois = new ObjectInputStream(new FileInputStream(RUTA));
+		try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(RUTA))) {
 
-			while (cargada == false) {
-				
+			boolean fin = false;
+
+			while (!fin) {
 				try {
 					Carta c = (Carta) ois.readObject();
 					baraja.add(c);
-					if (baraja.size() == 52) {
-						cargada = true;
-					}
 				} catch (EOFException e) {
-					break;
+					fin = true;
 				}
 			}
-
-			ois.close();
 
 		} catch (IOException | ClassNotFoundException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public Carta getCarta(int i) {
 		return baraja.get(i);
 	}

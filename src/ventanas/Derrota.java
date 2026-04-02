@@ -30,6 +30,7 @@ public class Derrota extends JDialog implements ActionListener {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
+		this.setLocation(0, 0);
 
 		miniIcono = new JLabel("");
 		miniIcono.setIcon(new ImageIcon("imagenes/miniIconoV2.png"));

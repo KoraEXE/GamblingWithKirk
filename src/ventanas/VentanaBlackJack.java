@@ -42,7 +42,12 @@ public class VentanaBlackJack extends JDialog implements ActionListener {
 	private JLabel TextoApostar;
 	private JTextField Apuesta;
 	private JButton botonJugar;
+	private JLabel TextSumaCrupier;
+	private JLabel SumaTotalCrupier;
 	private int cantidad;
+	private JLabel NoMostrar1;
+	private JLabel NoMostrar2;
+	private JLabel TextoInfo;
 
 	public VentanaBlackJack() {
 		setBounds(100, 100, 450, 300);
@@ -51,15 +56,32 @@ public class VentanaBlackJack extends JDialog implements ActionListener {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 
+		NoMostrar2 = new JLabel("");
+		NoMostrar2.setIcon(new ImageIcon("D:\\eclipse-workspace\\GamblingWithKirk\\imagenes\\trasera.jpg"));
+		NoMostrar2.setBounds(1018, 190, 113, 151);
+		contentPanel.add(NoMostrar2);
+
+		Crupier2 = new JLabel("");
+		Crupier2.setIcon(new ImageIcon("imagenes/trasera.jpg"));
+		Crupier2.setBounds(1018, 190, 113, 151);
+		contentPanel.add(Crupier2);
+
+		NoMostrar1 = new JLabel("");
+		NoMostrar1.setIcon(new ImageIcon("D:\\eclipse-workspace\\GamblingWithKirk\\imagenes\\trasera.jpg"));
+		NoMostrar1.setBounds(772, 190, 113, 151);
+		contentPanel.add(NoMostrar1);
+
 		Carta3 = new JLabel("");
-		Carta3.setIcon(new ImageIcon("imagenes/1-Treboles.jpg"));
-		Carta3.setBounds(828, 645, 113, 151);
+		Carta3.setIcon(new ImageIcon("D:\\eclipse-workspace\\GamblingWithKirk\\imagenes\\trasera.jpg"));
+		Carta3.setBounds(850, 651, 113, 151);
 		contentPanel.add(Carta3);
+		Carta3.setVisible(false);
 
 		Carta2 = new JLabel("");
-		Carta2.setIcon(new ImageIcon("imagenes/7-Picas.jpg"));
+		Carta2.setIcon(new ImageIcon("D:\\eclipse-workspace\\GamblingWithKirk\\imagenes\\trasera.jpg"));
 		Carta2.setBounds(803, 619, 113, 151);
 		contentPanel.add(Carta2);
+		Carta2.setVisible(false);
 		{
 			JLabel ComboText = new JLabel("Combo:");
 			ComboText.setBounds(29, 35, 76, 22);
@@ -67,19 +89,19 @@ public class VentanaBlackJack extends JDialog implements ActionListener {
 			contentPanel.add(ComboText);
 		}
 
-		ComboIcon = new JLabel("x3");
+		ComboIcon = new JLabel("x1");
 		ComboIcon.setHorizontalAlignment(SwingConstants.CENTER);
 		ComboIcon.setBounds(103, 12, 68, 69);
 		ComboIcon.setFont(new Font("Tahoma", Font.PLAIN, 58));
 		contentPanel.add(ComboIcon);
 
 		CartaNueva = new JLabel("");
-		CartaNueva.setIcon(new ImageIcon("imagenes/2-Rombos.jpg"));
+		CartaNueva.setIcon(new ImageIcon("imagenes/trasera.jpg"));
 		CartaNueva.setBounds(1018, 597, 113, 151);
 		contentPanel.add(CartaNueva);
 
 		Carta1 = new JLabel("");
-		Carta1.setIcon(new ImageIcon("imagenes/10-Treboles.jpg"));
+		Carta1.setIcon(new ImageIcon("imagenes/trasera.jpg"));
 		Carta1.setBounds(772, 597, 113, 151);
 		contentPanel.add(Carta1);
 
@@ -87,11 +109,6 @@ public class VentanaBlackJack extends JDialog implements ActionListener {
 		Crupier1.setIcon(new ImageIcon("imagenes/trasera.jpg"));
 		Crupier1.setBounds(772, 190, 113, 151);
 		contentPanel.add(Crupier1);
-
-		Crupier2 = new JLabel("");
-		Crupier2.setIcon(new ImageIcon("imagenes/trasera.jpg"));
-		Crupier2.setBounds(1018, 190, 113, 151);
-		contentPanel.add(Crupier2);
 
 		BotonPedir = new JButton("Pedir");
 		BotonPedir.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -106,11 +123,12 @@ public class VentanaBlackJack extends JDialog implements ActionListener {
 		BotonParar.setEnabled(false);
 
 		TextSuma = new JLabel("Suma Total:");
+		TextSuma.setHorizontalAlignment(SwingConstants.RIGHT);
 		TextSuma.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		TextSuma.setBounds(807, 541, 109, 31);
+		TextSuma.setBounds(750, 541, 166, 31);
 		contentPanel.add(TextSuma);
 
-		SumaTotal = new JLabel("20");
+		SumaTotal = new JLabel("");
 		SumaTotal.setHorizontalAlignment(SwingConstants.CENTER);
 		SumaTotal.setFont(new Font("Tahoma", Font.BOLD, 20));
 		SumaTotal.setBounds(924, 541, 39, 31);
@@ -130,21 +148,54 @@ public class VentanaBlackJack extends JDialog implements ActionListener {
 		Apuesta.setColumns(10);
 
 		botonJugar = new JButton("JUGAR");
-		botonJugar.setBounds(455, 781, 89, 23);
+		botonJugar.setBounds(428, 781, 147, 36);
 		contentPanel.add(botonJugar);
+		
+
+		TextSumaCrupier = new JLabel("Suma Total Crupier:");
+		TextSumaCrupier.setHorizontalAlignment(SwingConstants.RIGHT);
+		TextSumaCrupier.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		TextSumaCrupier.setBounds(750, 499, 166, 31);
+		contentPanel.add(TextSumaCrupier);
+
+		SumaTotalCrupier = new JLabel("");
+		SumaTotalCrupier.setHorizontalAlignment(SwingConstants.CENTER);
+		SumaTotalCrupier.setFont(new Font("Tahoma", Font.BOLD, 20));
+		SumaTotalCrupier.setBounds(924, 499, 39, 31);
+		contentPanel.add(SumaTotalCrupier);
+		
+		TextoInfo = new JLabel("Suma Total Crupier:");
+		TextoInfo.setHorizontalAlignment(SwingConstants.CENTER);
+		TextoInfo.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		TextoInfo.setBounds(577, 371, 749, 98);
+		contentPanel.add(TextoInfo);
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setSize(screenSize);
 		this.setLocation(0, 0);
 		botonJugar.addActionListener(this);
+		BotonPedir.addActionListener(this);
+		BotonParar.addActionListener(this);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
+		int contadorCartas = 0;
 		int sumaT = 0; //suma total
+		int sumaTC= 0; //suma total crupier
 		String sumaF = ""; //suma final
+		String sumaFC = "";//suma final crupier
+		int contadordecartas = 0;
+		int numCartasArray =0;
+		File f = new File("baraja.dat");
+		ArrayList<Carta> totalBaraja = new ArrayList<>();
+		Baraja baraja = new Baraja(f, totalBaraja);
+		Carta carta = new Carta();
+		BlackJack bkj = new BlackJack();
+		boolean as = false;
 
 		if (e.getSource() == botonJugar) {
+			bkj.iniciarJuego(f, totalBaraja );
 			try {
 				cantidad = Integer.parseInt(Apuesta.getText());
 			} catch (NumberFormatException ex) {
@@ -154,56 +205,100 @@ public class VentanaBlackJack extends JDialog implements ActionListener {
 			//Integer.parseInt(texto);
 
 			if (cantidad > 0) {
+				
+				
 				TextoApostar.setText("¡Buena suerte!");
-				sumaF = Integer.toString(sumaT);
-				TextSuma.setText("Suma Total: " + sumaF);
 				BotonPedir.setEnabled(true);
 				BotonParar.setEnabled(true);
 				botonJugar.setEnabled(false);
-				File f = new File("baraja.dat");
-				ArrayList<Carta> totalBaraja = new ArrayList<>();
-				Baraja baraja = new Baraja(f, totalBaraja);
-				Carta carta = new Carta();
-				BlackJack bkj = new BlackJack();
-				bkj.iniciarJuego(f, totalBaraja ); 
-				bkj.apostar(f, carta, totalBaraja);
 
-				System.out.println("Cantidad apostada: " + cantidad);
-				System.out.println("Carta repartida: " + totalBaraja.get(bkj.randomCarta).getNumero());
-				if (totalBaraja.get(bkj.randomCarta).getNumero().equals("AS") && sumaT <= 10) {
-					sumaT = sumaT + 11;
-				} else { if (totalBaraja.get(bkj.randomCarta).getNumero().equals("DOS")) {
-					sumaT = sumaT + 2;
-				} else if (totalBaraja.get(bkj.randomCarta).getNumero().equals("TRES")) {
-					sumaT = sumaT + 3;
-				} else if (totalBaraja.get(bkj.randomCarta).getNumero().equals("CUATRO")) {
-					sumaT = sumaT + 4;
-				} else if (totalBaraja.get(bkj.randomCarta).getNumero().equals("CINCO")) {
-					sumaT = sumaT + 5;
-				} else if (totalBaraja.get(bkj.randomCarta).getNumero().equals("SEIS")) {
-					sumaT = sumaT + 6;
-				} else if (totalBaraja.get(bkj.randomCarta).getNumero().equals("SIETE")) {
-					sumaT = sumaT + 7;
-				} else if (totalBaraja.get(bkj.randomCarta).getNumero().equals("OCHO")) {
-					sumaT = sumaT + 8;
-				} else if (totalBaraja.get(bkj.randomCarta).getNumero().equals("NUEVE")) {
-					sumaT = sumaT + 9;
-				} else if (totalBaraja.get(bkj.randomCarta).getNumero().equals("DIEZ") || totalBaraja.get(bkj.randomCarta).getNumero().equals("J") || totalBaraja.get(bkj.randomCarta).getNumero().equals("Q") || totalBaraja.get(bkj.randomCarta).getNumero().equals("K")) {
-					sumaT = sumaT + 10;
-				} else if (totalBaraja.get(bkj.randomCarta).getNumero().equals("AS") && sumaT > 10) {
-					sumaT = sumaT + 1;
-				}
-
-				for (Carta c : baraja.getBaraja()) {
-					System.out.println("Carta en la baraja: " + c.getNumero());
-				}
-				//Aqui se le asigna la carta al jugador y se le quita de la baraja
+				//Para el jugador
 
 
+				do {
+					bkj.apostar(f, carta, totalBaraja, numCartasArray);
 
-				}
+					if (contadorCartas == 2) {
+						sumaT = 0;
+					}
+
+					// Traductor de cartas 
+					sumaT = bkj.traductorDeCartas(totalBaraja, bkj, sumaT, as);
+					
+					if (sumaT > 21 && as == true) {
+						sumaT = sumaT - 10;
+						as = false;
+					}
+
+					if (contadorCartas == 2) {
+						sumaFC = Integer.toString(sumaT);
+						SumaTotalCrupier.setText(sumaFC);
+						System.out.println("Carta obtenida para el Crupier: " + totalBaraja.get(bkj.randomCarta).getNumero());
+						
+					} else if (contadorCartas == 3) {
+						sumaFC = Integer.toString(sumaT);
+						System.out.println("Carta obtenida para el Crupier: " + totalBaraja.get(bkj.randomCarta).getNumero());
+
+						//dar la vuelta a cartas
+					} else {
+						sumaF =Integer.toString(sumaT); //lo pasa a String
+						SumaTotal.setText(sumaF);
+						System.out.println("Carta obtenida: " + totalBaraja.get(bkj.randomCarta).getNumero());
+					}
+
+					contadorCartas++;
+
+					if (contadorCartas == 1) {
+						Carta1.setIcon(totalBaraja.get(bkj.randomCarta).getImagen());
+					} else if (contadorCartas == 2) {
+						CartaNueva.setIcon(totalBaraja.get(bkj.randomCarta).getImagen());
+						Carta2.setIcon(totalBaraja.get(bkj.randomCarta).getImagen()); //Aun no es visible
+					} else if (contadorCartas == 3) {
+						Crupier1.setIcon(totalBaraja.get(bkj.randomCarta).getImagen());
+					} else if (contadorCartas == 4) {
+						Crupier2.setIcon(totalBaraja.get(bkj.randomCarta).getImagen());	
+					}
+
+
+
+				} while (contadorCartas != 4);
+
+				NoMostrar1.setVisible(false);
+				contadordecartas = contadorCartas;
+
+				//consultar todas las cartas de fich f baraja.dat
+				System.out.println(contadorCartas);
+
+				if ((sumaT = Integer.parseInt(sumaF)) > 21) {
+					BotonPedir.setEnabled(false);
+				}				
 			}
-
+		}
+		
+		if (e.getSource() == BotonPedir) {
+			bkj.apostar(f, carta, totalBaraja, numCartasArray);
+			sumaF = SumaTotal.getText();
+			sumaT = Integer.parseInt(sumaF);
+			sumaT = bkj.traductorDeCartas(totalBaraja, bkj, sumaT, as);
+			sumaF = Integer.toString(sumaT);
+			SumaTotal.setText(sumaF);
+			System.out.println("Carta obtenida: " + totalBaraja.get(bkj.randomCarta).getNumero());
+			
+			if ((sumaT = Integer.parseInt(sumaF)) > 21) {
+				BotonPedir.setEnabled(false);
+				TextoInfo.setText("¡Has perdido!");
+				Derrota vD=new Derrota();
+				vD.setVisible(true);
+			}	
+			if (Carta2.isVisible() == false) {
+				Carta2.setVisible(true);
+				Carta3.setIcon(totalBaraja.get(bkj.randomCarta).getImagen());
+				CartaNueva.setIcon(totalBaraja.get(bkj.randomCarta).getImagen());
+				contadordecartas++;
+			} else if (Carta2.isVisible() == true) {
+				Carta3.setVisible(true);
+				CartaNueva.setIcon(totalBaraja.get(bkj.randomCarta).getImagen());
+			}
 		}
 	}
 }

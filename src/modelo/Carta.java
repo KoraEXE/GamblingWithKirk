@@ -23,6 +23,10 @@ public class Carta implements Serializable {
 		return numero;
 	}
 
+	public ImageIcon getImagen() {
+		return imagen;
+	}
+
 	public void setNumero(String numero) {
 		if(numero.compareTo("AS")==1||numero.compareTo("DOS")==2||numero.compareTo("TRES")==3||numero.compareTo("CUATRO")==4||
 		   numero.compareTo("CINCO")==5||numero.compareTo("SEIS")==6||numero.compareTo("SIETE")==7||numero.compareTo("OCHO")==8||
