@@ -211,7 +211,6 @@ public class VentanaBlackJack extends JDialog implements ActionListener {
 		int numCartasArray =0;
 		File f = new File("baraja.dat");
 		ArrayList<Carta> totalBaraja = new ArrayList<>();
-		Baraja baraja = new Baraja(f, totalBaraja);
 		Carta carta = new Carta();
 		BlackJack bkj = new BlackJack();
 		TextoInfo.setText("");
