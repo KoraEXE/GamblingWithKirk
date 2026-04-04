@@ -17,4 +17,7 @@ public class LoginControlador {
 		return dao.comprobarUsuario(usuario);
 	}
 	
+	public String obtenerDNI (User usuario) {
+		return dao.obtenerDNI(usuario);
+	}
 }

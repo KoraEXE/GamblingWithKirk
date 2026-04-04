@@ -186,6 +186,11 @@ public class VentanaInicial extends JFrame implements ActionListener{
 			} else if (cont.comprobarUsuario(new User(campoNombre.getText(), new String(campoContrasena.getPassword())))) {
 				Hablar.setText("Datos correctos");
 				// aquí llamar al controlador
+				
+				//comprueba que el DNI se obtiene corretamente
+				//Hay que gaurdalo en el resto de clases como valor
+				System.out.println(cont.obtenerDNI(new User(campoNombre.getText(), new String(campoContrasena.getPassword()))));
+				
 				SelecionJuego v2=new SelecionJuego(cont);		
 				v2.setVisible(true);
 				this.dispose();
