@@ -33,7 +33,7 @@ public class ImplementacionBD implements UsuarioDAO{
 		// Para la conexi n utilizamos un fichero de configuaraci n, config que
 		// guardamos en el paquete control:
 		public ImplementacionBD() {
-			this.configFile = ResourceBundle.getBundle("configClase");
+			this.configFile = ResourceBundle.getBundle("modelo.configClase");
 			this.driverBD = this.configFile.getString("Driver");
 			this.urlBD = this.configFile.getString("Conn");
 			this.userBD = this.configFile.getString("DBUser");
@@ -47,15 +47,30 @@ public class ImplementacionBD implements UsuarioDAO{
 				System.out.println("Error al intentar abrir la BD");
 				e.printStackTrace();
 			} catch (Exception e) {
-				e.printStackTrace();
+				e.printStackTrace(); 
 			}
 		}
 
 		@Override
 		public boolean comprobarUsuario(User usuario) {
-			// TODO Auto-generated method stub
-			
-			return false;
+			boolean existe = false;
+			this.openConnection();
+			try {
+				stmt = con.prepareStatement(SQL);
+				stmt.setString(1, usuario.getName());
+				stmt.setString(2, usuario.getPassword());
+				ResultSet resultado = stmt.executeQuery();
+				// Si hay un resultado, el usuario existe
+				if (resultado.next()) {
+					existe = true;
+				}
+				resultado.close();
+				stmt.close();
+				con.close();
+			} catch (SQLException e) {
+				System.out.println("Error al verificar credenciales: " + e.getMessage());
+			}
+			return existe;
 		}
 
 		@Override

@@ -9,6 +9,9 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import controlador.LoginControlador;
+
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
@@ -22,8 +25,10 @@ public class SelecionJuego extends JDialog implements ActionListener {
 	private JButton cerrarSesion;
 	private JButton borrar;
 	private JButton pray;
+	private LoginControlador cont;
 
-	public SelecionJuego() { 
+	public SelecionJuego(LoginControlador controlador) { 
+		this.cont=controlador;
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -97,7 +102,7 @@ public class SelecionJuego extends JDialog implements ActionListener {
 		// TODO Auto-generated method stub
 		
 		if(e.getSource()==cerrarSesion) {
-			VentanaInicial vI=new VentanaInicial();
+			VentanaInicial vI=new VentanaInicial(cont);
 			vI.setVisible(true);
 			this.dispose();
 		}

@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import controlador.LoginControlador;
+import modelo.User;
 
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
@@ -32,7 +33,7 @@ public class VentanaInicial extends JFrame implements ActionListener{
 	private JButton btnRegister;
 	private JLabel TextNombre;
 	private JLabel TextContraseña;
-	private JTextField textField;
+	private JTextField campoNombre;
 	private JPasswordField campoContrasena;
 	private JCheckBox mostrarContrasena;
 	private JLabel Hablar;
@@ -40,7 +41,8 @@ public class VentanaInicial extends JFrame implements ActionListener{
 	private ImageIcon lblimagen;
 	private JLabel nube;
 
-	public VentanaInicial() {
+	public VentanaInicial(LoginControlador cont) {
+		this.cont = cont;
 		setTitle("Ventana Inicial");
 		setIconImage(Toolkit.getDefaultToolkit().getImage("imagenes/Isr.jpg"));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -94,11 +96,11 @@ public class VentanaInicial extends JFrame implements ActionListener{
 		TextContraseña.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		contentPane.add(TextContraseña);
 
-		textField = new JTextField();
-		textField.setBounds(1219, 264, 261, 52);
-		textField.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		contentPane.add(textField);
-		textField.setColumns(10);
+		campoNombre = new JTextField();
+		campoNombre.setBounds(1219, 264, 261, 52);
+		campoNombre.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		contentPane.add(campoNombre);
+		campoNombre.setColumns(10);
 
 		campoContrasena = new JPasswordField();
 		campoContrasena.setBounds(1219, 341, 261, 52);
@@ -171,8 +173,9 @@ public class VentanaInicial extends JFrame implements ActionListener{
 		}
 
 		if (e.getSource() == btnPlay) {
-
-			String usuario = textField.getText();
+			
+			//if (cont.comprobarUsuario(new Users(textUsername.getText(), new String(passwordField.getPassword()))))
+			String usuario = campoNombre.getText();
 			char[] password = null;
 			if (campoContrasena.isVisible()) {
 				password = campoContrasena.getPassword();
@@ -180,12 +183,15 @@ public class VentanaInicial extends JFrame implements ActionListener{
 			if (usuario.equals("") || password.equals("")) {
 				nube.setVisible(true);
 				Hablar.setText("Rellena todos los campos");
-			} else {
+			} else if (cont.comprobarUsuario(new User(campoNombre.getText(), new String(campoContrasena.getPassword())))) {
 				Hablar.setText("Datos correctos");
 				// aquí llamar al controlador
-				SelecionJuego v2=new SelecionJuego();		
+				SelecionJuego v2=new SelecionJuego(cont);		
 				v2.setVisible(true);
 				this.dispose();
+			} else {
+				nube.setVisible(true);
+				Hablar.setText("Usuario no registrado");
 			}
 		}
 	}

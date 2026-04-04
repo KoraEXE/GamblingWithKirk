@@ -146,7 +146,7 @@ public class VentanaLogin extends JDialog implements ActionListener{
 				TextRespuesta.setText("Rellena todos los campos");
 			} else {
 				TextRespuesta.setText("Datos correctos");
-				VentanaInicial vl=new VentanaInicial();
+				VentanaInicial vl=new VentanaInicial(cont);
 				vl.setVisible(true);
 				this.dispose();
 				// aquí llamar al controlador		    

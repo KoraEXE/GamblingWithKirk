@@ -16,6 +16,11 @@ public class User {
 		this.balance = balance;
 		this.date_of_birth = date_of_birth;
 	}
+	
+	public User( String name, String password) {
+		this.name = name;
+		this.password = password;
+	}
 
 	public String getDni() {
 		return dni;
