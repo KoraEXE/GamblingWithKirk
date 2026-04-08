@@ -23,18 +23,19 @@ public class ImplementacionBD implements UsuarioDAO{
 
 	// Sentencias SQL
 	final String sql1 = "SELECT * FROM USERS WHERE USERNAME = ?";
-	final String sqlInsert = "INSERT INTO USERS VALUES (?,?)";
 	final String SQLCONSULTA = "SELECT * FROM USERS";
 	final String SQLBORRAR = "DELETE FROM USERS WHERE USERNAME=?";
 	final String SQLMODIFICAR = "UPDATE USERS SET PASWORD=? WHERE USERNAME=?";
 
 	// Sentencias SQL EnProceso
 
-
+	final String sqlInsert = "INSERT INTO USERS VALUES (?,?,?,?)";
 	final String sqlNomUsuario = "SELECT USERNAME USERS WHERE DNI = ?";
 
 
 	// Sentencias SQL Fucionales
+
+
 	final String sqlDinero = "SELECT BALANCE FROM USERS USERNAME = ? AND PASWORD = ?";
 	final String sqlNombre = "SELECT USERNAME FROM USERS WHERE DNI = ?";
 	final String SQL = "SELECT * FROM USERS WHERE USERNAME = ? AND PASWORD = ?";
@@ -103,7 +104,7 @@ public class ImplementacionBD implements UsuarioDAO{
 		}
 		return dni;
 	}
-	
+
 	public String obtenerNombre(User usuario) {
 		String nombre = "";
 		this.openConnection();
@@ -123,7 +124,7 @@ public class ImplementacionBD implements UsuarioDAO{
 		return nombre;
 	}
 
-	
+
 	public int obtenerDinero(User usuario) {
 		int dinero = 0;
 		this.openConnection();
@@ -144,11 +145,26 @@ public class ImplementacionBD implements UsuarioDAO{
 		return dinero;
 	}
 
-	@Override
 	public boolean insertarUsuario(User usuario) {
-		// TODO Auto-generated method stub
+		boolean bien = false;
+		this.openConnection();
+		 try {
+				// Preparamos la sentencia stmt con la conexion y sentencia sql correspondiente
 
-		return false;
+				stmt = con.prepareStatement(sqlInsert);
+				stmt.setString(1, usuario.getDni());
+				stmt.setString(2, usuario.getName());
+				stmt.setString(3, usuario.getPassword());
+				stmt.setDouble(4, usuario.getBalance());
+				if (stmt.executeUpdate() > 0) {
+					bien = true;
+				}
+				stmt.close();
+				con.close();
+			} catch (SQLException e) {
+				System.out.println("Error al verificar credenciales: " + e.getMessage());
+			}  
+		return bien;
 	}
 
 	@Override

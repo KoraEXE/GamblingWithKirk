@@ -13,6 +13,8 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import controlador.LoginControlador;
+import modelo.User;
+
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
@@ -37,10 +39,13 @@ public class VentanaLogin extends JDialog implements ActionListener{
 	private JComboBox comboBox;
 	private JCheckBox mostrarContrasena;
 	private String dni;
+	private User elusuario;
+	private JTextField campoDNI;
 
-	public VentanaLogin(LoginControlador controlador) {
+	public VentanaLogin(LoginControlador controlador, User elusuario) {
 		setIconImage(Toolkit.getDefaultToolkit().getImage("imagenes/R.png"));
 		this.cont=controlador;
+		this.elusuario=elusuario;
 		setTitle("Register");
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);		
 		setBounds(100, 100, 450, 300);
@@ -95,7 +100,7 @@ public class VentanaLogin extends JDialog implements ActionListener{
 		JLabel TextRegistrar = new JLabel("Register");
 		TextRegistrar.setHorizontalAlignment(SwingConstants.CENTER);
 		TextRegistrar.setFont(new Font("Tahoma", Font.PLAIN, 60));
-		TextRegistrar.setBounds(775, 162, 354, 82);
+		TextRegistrar.setBounds(775, 139, 354, 82);
 		contentPane.add(TextRegistrar);
 
 		ImageIcon lblimagen = new ImageIcon("imagenes/G.jpg");
@@ -107,7 +112,7 @@ public class VentanaLogin extends JDialog implements ActionListener{
 
 		JLabel TextBalance = new JLabel("Balance:");
 		TextBalance.setFont(new Font("Tahoma", Font.PLAIN, 24));
-		TextBalance.setBounds(697, 390, 138, 40);
+		TextBalance.setBounds(697, 381, 138, 40);
 		contentPane.add(TextBalance);
 
 		comboBox = new JComboBox();
@@ -116,12 +121,24 @@ public class VentanaLogin extends JDialog implements ActionListener{
 		comboBox.setSelectedIndex(0);
 		comboBox.setBounds(852, 388, 206, 31);
 		contentPane.add(comboBox);
-		
-				btnLogin = new JButton("Login");
-				btnLogin.setFont(new Font("Tahoma", Font.PLAIN, 18));
-				btnLogin.setBounds(836, 454, 241, 35);
-				contentPane.add(btnLogin);
-				btnLogin.addActionListener(this);
+
+		btnLogin = new JButton("Login");
+		btnLogin.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnLogin.setBounds(836, 454, 241, 35);
+		contentPane.add(btnLogin);
+
+		JLabel TextDNI = new JLabel("DNI:");
+		TextDNI.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		TextDNI.setBounds(697, 247, 138, 40);
+		contentPane.add(TextDNI);
+
+		campoDNI = new JTextField();
+		campoDNI.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		campoDNI.setColumns(10);
+		campoDNI.setBounds(852, 250, 206, 35);
+		contentPane.add(campoDNI);
+		btnLogin.addActionListener(this);
+
 		if (comboBox.getSelectedIndex() == 0) {
 			TextRespuesta.setText("Selecciona un valor válido");
 		} else {
@@ -132,21 +149,38 @@ public class VentanaLogin extends JDialog implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
+		if (e.getSource() == mostrarContrasena) {
+			if (mostrarContrasena.isSelected()) {
+				// (char)0 significa "sin máscara", muestra el texto real
+				campoContrasena.setEchoChar((char) 0); 
+			} else {
+				// Restablece el punto negro o asterisco
+				campoContrasena.setEchoChar('●'); 
+			}
+		}
+
 		if (e.getSource() == btnLogin) {
 
-			String usuario = campoUsuario.getText();
-			String password;
-			if (campoContrasena.isVisible()) {
-			    password = campoContrasena.getText();
-			} else {
-			    password = campoContrasenaVisible.getText();
-			}
-
-
-			if (usuario.equals("") || password.equals("") || comboBox.getSelectedIndex() == 0) {
+			if (campoDNI.equals("") || campoUsuario.equals("") || comboBox.getSelectedIndex() == 0  || campoContrasena.equals("")) {
 				TextRespuesta.setText("Rellena todos los campos");
 			} else {
+
+				elusuario.setDni(campoDNI.getText());
+				elusuario.setName(campoUsuario.getText());
+				elusuario.setPassword(String.valueOf(campoContrasena.getPassword()));
+				elusuario.setBalance(comboBox.getSelectedIndex());		
+
+				elusuario.setDni(dni);
+
+				cont.insertarUsuario(elusuario);
+
+
+
 				TextRespuesta.setText("Datos correctos");
+
+
+
+
 				VentanaInicial vl=new VentanaInicial(cont);
 				vl.setVisible(true);
 				this.dispose();

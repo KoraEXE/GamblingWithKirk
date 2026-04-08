@@ -29,4 +29,8 @@ public class LoginControlador {
 	public int obtenerDinero (User usuario) {
 		return dao.obtenerDinero(usuario);
 	}
+	
+	public boolean insertarUsuario (User usuario) {
+		return dao.insertarUsuario(usuario);
+	}
 }

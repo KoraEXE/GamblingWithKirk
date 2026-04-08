@@ -160,7 +160,7 @@ public class VentanaInicial extends JFrame implements ActionListener{
 		// TODO Auto-generated method stub
 
 		if(e.getSource()==btnRegister) {
-			VentanaLogin vl=new VentanaLogin(cont);
+			VentanaLogin vl=new VentanaLogin(cont, elusuario);
 			vl.setVisible(true);
 			this.dispose();
 		}

@@ -459,7 +459,7 @@ public class VentanaBlackJack extends JDialog implements ActionListener {
 				elusuario.setBalance(elusuario.getBalance() + cantidad * (1.2 + 0.1 * racha));
 			}
 
-			if (racha <= 4) {
+			if (racha <= 4) { 
 				racha ++;
 				rachaReal ++; //para la pagina web
 			}
