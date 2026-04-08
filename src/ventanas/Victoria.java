@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import controlador.LoginControlador;
+import modelo.User;
 
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
@@ -26,8 +27,9 @@ public class Victoria extends JDialog implements ActionListener {
 	private JLabel Fondo;
 	private JDialog VentanaBlackJack;
 	private LoginControlador cont;
+	private User elusuario;
 
-	public Victoria(JDialog VentanaBlackJack) {
+	public Victoria(JDialog VentanaBlackJack,User elusuario) {
 		super(VentanaBlackJack, "Victoria", true);
 		this.VentanaBlackJack = VentanaBlackJack;
 
@@ -74,7 +76,7 @@ public class Victoria extends JDialog implements ActionListener {
 		// TODO Auto-generated method stub
 		//si se pulsa el boton de perder la racha se cierra la ventana y vuelve a la ventana de seleccion de juego
 		if(e.getSource()==PerderLaRacha) {
-			SelecionJuego sJ=new SelecionJuego(cont);
+			SelecionJuego sJ=new SelecionJuego(cont, elusuario);
 			sJ.setVisible(true);
 			VentanaBlackJack.dispose();
 			this.dispose();

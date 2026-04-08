@@ -6,6 +6,7 @@ import modelo.UsuarioDAO;
 import ventanas.VentanaInicial;
 
 public class LoginControlador {
+	
 	UsuarioDAO dao = new ImplementacionBD();
 
 	public void visualizarPantalla() {
@@ -19,5 +20,13 @@ public class LoginControlador {
 	
 	public String obtenerDNI (User usuario) {
 		return dao.obtenerDNI(usuario);
+	}
+	
+	public String obtenerNombre(User usuario) {
+		return dao.obtenerNombre(usuario);
+	}
+	
+	public int obtenerDinero (User usuario) {
+		return dao.obtenerDinero(usuario);
 	}
 }

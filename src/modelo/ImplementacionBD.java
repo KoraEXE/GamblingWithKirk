@@ -29,12 +29,14 @@ public class ImplementacionBD implements UsuarioDAO{
 	final String SQLMODIFICAR = "UPDATE USERS SET PASWORD=? WHERE USERNAME=?";
 
 	// Sentencias SQL EnProceso
-	final String sqlDinero = "SELECT BALANCE FROM USERS WHERE DNI = ?";
+
 
 	final String sqlNomUsuario = "SELECT USERNAME USERS WHERE DNI = ?";
 
 
 	// Sentencias SQL Fucionales
+	final String sqlDinero = "SELECT BALANCE FROM USERS USERNAME = ? AND PASWORD = ?";
+	final String sqlNombre = "SELECT USERNAME FROM USERS WHERE DNI = ?";
 	final String SQL = "SELECT * FROM USERS WHERE USERNAME = ? AND PASWORD = ?";
 	final String sqlDNI = "SELECT DNI FROM USERS WHERE USERNAME = ? AND PASWORD = ?"; //Para usarlo como ancla del usuario en el resto de ventanas hasta que decida des loggearse
 
@@ -101,6 +103,26 @@ public class ImplementacionBD implements UsuarioDAO{
 		}
 		return dni;
 	}
+	
+	public String obtenerNombre(User usuario) {
+		String nombre = "";
+		this.openConnection();
+		try {
+			stmt = con.prepareStatement(SQL);
+			stmt.setString(1, usuario.getDni());
+			ResultSet resultado = stmt.executeQuery();
+			if (resultado.next()) {
+				nombre = resultado.getString("nombre"); 
+			}
+			resultado.close();
+			stmt.close();
+			con.close();
+		} catch (SQLException e) {
+			System.out.println("Error al verificar credenciales: " + e.getMessage());
+		}
+		return nombre;
+	}
+
 	
 	public int obtenerDinero(User usuario) {
 		int dinero = 0;

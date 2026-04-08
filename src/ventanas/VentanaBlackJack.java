@@ -17,6 +17,7 @@ import javax.swing.border.EmptyBorder;
 import juego.BlackJack;
 import modelo.Baraja;
 import modelo.Carta;
+import modelo.User;
 
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -50,9 +51,11 @@ public class VentanaBlackJack extends JDialog implements ActionListener {
 	private JLabel TextoInfo;
 	private JLabel sumaTotalReal;
 	private JLabel Crupier2;
-	BlackJack juego = new BlackJack();
+	private BlackJack juego;
+	private User elusuario;
 
-	public VentanaBlackJack() {
+	public VentanaBlackJack(User elusuario) {
+		this.elusuario = elusuario;
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -376,13 +379,13 @@ public class VentanaBlackJack extends JDialog implements ActionListener {
 
 		if (resultado.equals("GANAR")) {
 			TextoInfo.setText("¡Has ganado!");
-			Victoria victoria = new Victoria(this);
+			Victoria victoria = new Victoria(this, elusuario);
 			victoria.setLocation(400, 600); //posición
 			victoria.setVisible(true);
 
 		} else if (resultado.equals("PERDER")) {
 			TextoInfo.setText("¡Has perdido!");
-			Derrota derrota = new Derrota(this);
+			Derrota derrota = new Derrota(this, elusuario);
 			derrota.setLocation(400, 600); //posición
 			derrota.setVisible(true);
 

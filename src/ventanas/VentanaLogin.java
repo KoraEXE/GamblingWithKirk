@@ -36,6 +36,7 @@ public class VentanaLogin extends JDialog implements ActionListener{
 	private LoginControlador cont;
 	private JComboBox comboBox;
 	private JCheckBox mostrarContrasena;
+	private String dni;
 
 	public VentanaLogin(LoginControlador controlador) {
 		setIconImage(Toolkit.getDefaultToolkit().getImage("imagenes/R.png"));

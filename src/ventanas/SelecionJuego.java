@@ -11,11 +11,13 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import controlador.LoginControlador;
+import modelo.User;
 
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
+import java.awt.Font;
 
 public class SelecionJuego extends JDialog implements ActionListener {
 	private static final long serialVersionUID = 1L;
@@ -26,9 +28,14 @@ public class SelecionJuego extends JDialog implements ActionListener {
 	private JButton borrar;
 	private JButton pray;
 	private LoginControlador cont;
+	private JLabel nombreJugador;
+	private JLabel dineroJugador;
+	private JLabel textoDIneroJugador;
+	private User elusuario;
 
-	public SelecionJuego(LoginControlador controlador) { 
+	public SelecionJuego(LoginControlador controlador, User elusuario) {
 		this.cont=controlador;
+		this.elusuario = elusuario;
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -37,6 +44,31 @@ public class SelecionJuego extends JDialog implements ActionListener {
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setSize(screenSize);
 		this.setLocation(0, 0);
+		
+		
+		dineroJugador = new JLabel((String) null);
+		dineroJugador.setHorizontalAlignment(SwingConstants.LEFT);
+		dineroJugador.setFont(new Font("Tahoma", Font.PLAIN, 28));
+		dineroJugador.setBounds(148, 76, 304, 44);
+		contentPanel.add(dineroJugador);
+		dineroJugador.setText(String.valueOf(elusuario.getBalance()));
+		
+		textoDIneroJugador = new JLabel("Dinero");
+		textoDIneroJugador.setFont(new Font("Tahoma", Font.PLAIN, 28));
+		textoDIneroJugador.setBounds(23, 76, 115, 44);
+		contentPanel.add(textoDIneroJugador);
+		
+		nombreJugador = new JLabel("");
+		nombreJugador.setFont(new Font("Tahoma", Font.PLAIN, 28));
+		nombreJugador.setHorizontalAlignment(SwingConstants.LEFT);
+		nombreJugador.setBounds(148, 21, 304, 44);
+		contentPanel.add(nombreJugador);
+		nombreJugador.setText(elusuario.getName());
+		
+		JLabel textoNombreJugador = new JLabel("Jugador:");
+		textoNombreJugador.setFont(new Font("Tahoma", Font.PLAIN, 28));
+		textoNombreJugador.setBounds(23, 21, 115, 44);
+		contentPanel.add(textoNombreJugador);
 		
 		{
 			JLabel lblNewLabel = new JLabel("");
@@ -101,6 +133,7 @@ public class SelecionJuego extends JDialog implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		
+		
 		if(e.getSource()==cerrarSesion) {
 			VentanaInicial vI=new VentanaInicial(cont);
 			vI.setVisible(true);
@@ -108,7 +141,7 @@ public class SelecionJuego extends JDialog implements ActionListener {
 		}
 		
 		if (e.getSource()==blackJack) {
-			VentanaBlackJack vI=new VentanaBlackJack();
+			VentanaBlackJack vI=new VentanaBlackJack(elusuario);
 			vI.setVisible(true);
 			this.dispose();
 		}

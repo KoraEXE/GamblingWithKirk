@@ -17,9 +17,16 @@ public class User {
 		this.date_of_birth = date_of_birth;
 	}
 	
-	public User( String name, String password) {
+	public User(String name, String password) {
 		this.name = name;
 		this.password = password;
+	}
+	
+	public User(String dni) {
+		this.dni = dni;
+	}
+	
+	public User() {
 	}
 
 	public String getDni() {

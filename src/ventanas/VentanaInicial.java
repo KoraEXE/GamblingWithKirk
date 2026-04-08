@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import controlador.LoginControlador;
+import modelo.Carta;
 import modelo.User;
 
 import javax.swing.JLabel;
@@ -40,6 +41,7 @@ public class VentanaInicial extends JFrame implements ActionListener{
 	private JLabel TextoExtra;
 	private ImageIcon lblimagen;
 	private JLabel nube;
+	private User elusuario = new User();
 
 	public VentanaInicial(LoginControlador cont) {
 		this.cont = cont;
@@ -173,8 +175,8 @@ public class VentanaInicial extends JFrame implements ActionListener{
 		}
 
 		if (e.getSource() == btnPlay) {
+			String dni;
 			
-			//if (cont.comprobarUsuario(new Users(textUsername.getText(), new String(passwordField.getPassword()))))
 			String usuario = campoNombre.getText();
 			char[] password = null;
 			if (campoContrasena.isVisible()) {
@@ -184,14 +186,16 @@ public class VentanaInicial extends JFrame implements ActionListener{
 				nube.setVisible(true);
 				Hablar.setText("Rellena todos los campos");
 			} else if (cont.comprobarUsuario(new User(campoNombre.getText(), new String(campoContrasena.getPassword())))) {
+				dni = cont.obtenerDNI(new User(campoNombre.getText(), new String(campoContrasena.getPassword()))); //Obtiene el DNI del usuario para futuros usos
+				elusuario.setDni(dni);
+				elusuario.setName(usuario);
+				elusuario.setPassword(String.valueOf(password));
+				elusuario.setBalance(cont.obtenerDinero(new User(campoNombre.getText(), new String(campoContrasena.getPassword()))));
+		
+
 				Hablar.setText("Datos correctos");
-				// aquí llamar al controlador
 				
-				//comprueba que el DNI se obtiene corretamente
-				//Hay que gaurdalo en el resto de clases como valor
-				System.out.println(cont.obtenerDNI(new User(campoNombre.getText(), new String(campoContrasena.getPassword()))));
-				
-				SelecionJuego v2=new SelecionJuego(cont);		
+				SelecionJuego v2=new SelecionJuego(cont, elusuario);		
 				v2.setVisible(true);
 				this.dispose();
 			} else {
