@@ -14,6 +14,7 @@ import controlador.LoginControlador;
 import modelo.User;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
@@ -97,12 +98,9 @@ public class SelecionJuego extends JDialog implements ActionListener {
 		}
 		{
 			borrar = new JButton("4. BORRAR");
-			borrar.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-				}
-			});
 			borrar.setBounds(773, 715, 357, 71);
 			contentPanel.add(borrar);
+			this.borrar.addActionListener(this);
 		}
 		{
 			pray = new JButton("5. PRAY");
@@ -146,6 +144,20 @@ public class SelecionJuego extends JDialog implements ActionListener {
 			vI.setVisible(true);
 			this.dispose();
 		}
+		
+		if (e.getSource()==borrar) {
+			
+			int respuesta =JOptionPane.showConfirmDialog(null,  "¿Estas seguro que quieres realizar esta accion?");
+			if (respuesta == 2 ) { //no
+				
+			} else {
+				cont.borrarUsuario(elusuario);
+				VentanaInicial vI=new VentanaInicial(cont);
+				vI.setVisible(true);
+				this.dispose();
+			}
+		}
+		
 	}
 }
 

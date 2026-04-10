@@ -33,4 +33,8 @@ public class LoginControlador {
 	public boolean insertarUsuario (User usuario) {
 		return dao.insertarUsuario(usuario);
 	}
+	
+	public boolean borrarUsuario (User usuario) {
+		return dao.borrarUsuario(usuario);
+	}
 }

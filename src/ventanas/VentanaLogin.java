@@ -42,12 +42,13 @@ public class VentanaLogin extends JDialog implements ActionListener{
 	private JButton btnLogin;
 	private JLabel TextRespuesta;
 	private LoginControlador cont;
-	private JComboBox comboBox;
+	private JComboBox<?> comboBox;
 	private JCheckBox mostrarContrasena;
 	private String dni;
 	private User elusuario;
 	private JTextField campoDNI;
 	private JTextField campoFechaNacimiento;
+	private JButton btnRegresar;
 
 	public VentanaLogin(LoginControlador controlador, User elusuario) {
 		setIconImage(Toolkit.getDefaultToolkit().getImage("imagenes/R.png"));
@@ -67,13 +68,13 @@ public class VentanaLogin extends JDialog implements ActionListener{
 
 		campoUsuario = new JTextField();
 		campoUsuario.setFont(new Font("Tahoma", Font.PLAIN, 24));
-		campoUsuario.setBounds(852, 296, 206, 35);
+		campoUsuario.setBounds(849, 296, 206, 35);
 		contentPane.add(campoUsuario);
 		campoUsuario.setColumns(10);
 
 		campoContrasena = new JPasswordField();
 		campoContrasena.setFont(new Font("Tahoma", Font.PLAIN, 24));
-		campoContrasena.setBounds(852, 342, 206, 35);
+		campoContrasena.setBounds(849, 342, 206, 35);
 		contentPane.add(campoContrasena);
 
 		campoContrasenaVisible = new JTextField();
@@ -121,17 +122,17 @@ public class VentanaLogin extends JDialog implements ActionListener{
 		TextBalance.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		TextBalance.setBounds(697, 427, 138, 40);
 		contentPane.add(TextBalance);
-
+		
 		comboBox = new JComboBox();
 		comboBox.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"-- Select Import --","100","200","300","400","500","600","700","800","900","1000"}));
 		comboBox.setSelectedIndex(0);
-		comboBox.setBounds(852, 434, 206, 31);
+		comboBox.setBounds(849, 434, 206, 31);
 		contentPane.add(comboBox);
 
 		btnLogin = new JButton("Login");
 		btnLogin.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnLogin.setBounds(838, 492, 241, 35);
+		btnLogin.setBounds(831, 491, 241, 35);
 		contentPane.add(btnLogin);
 
 		JLabel TextDNI = new JLabel("DNI:");
@@ -142,7 +143,7 @@ public class VentanaLogin extends JDialog implements ActionListener{
 		campoDNI = new JTextField();
 		campoDNI.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		campoDNI.setColumns(10);
-		campoDNI.setBounds(852, 250, 206, 35);
+		campoDNI.setBounds(849, 250, 206, 35);
 		contentPane.add(campoDNI);
 
 		JLabel TextFechaNacimiento = new JLabel("Birth Date:");
@@ -153,9 +154,16 @@ public class VentanaLogin extends JDialog implements ActionListener{
 		campoFechaNacimiento = new JTextField();
 		campoFechaNacimiento.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		campoFechaNacimiento.setColumns(10);
-		campoFechaNacimiento.setBounds(852, 388, 206, 35);
+		campoFechaNacimiento.setBounds(849, 388, 206, 35);
 		contentPane.add(campoFechaNacimiento);
+		
+		btnRegresar = new JButton("Go Back");
+		btnRegresar.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnRegresar.setBounds(831, 536, 241, 35);
+		contentPane.add(btnRegresar);
+		
 		btnLogin.addActionListener(this);
+		btnRegresar.addActionListener(this);
 
 		if (comboBox.getSelectedIndex() == 0) {
 			TextRespuesta.setText("Selecciona un valor válido");
@@ -214,17 +222,34 @@ public class VentanaLogin extends JDialog implements ActionListener{
 		        }
 				
 				fechas = LocalDate.parse(fecha, formato);
+				int cantidad = 0;
 				
-				System.out.println(campoDNI.getText());
-				System.out.println(campoUsuario.getText());
-				System.out.println(String.valueOf(campoContrasena.getPassword()));
-				System.out.println(comboBox.getSelectedIndex());
-				System.out.println(fechas);
-
+				if (comboBox.getSelectedIndex() == 1) {
+					cantidad = 100;
+				} else if (comboBox.getSelectedIndex() == 2) {
+					cantidad = 200;
+				} else if (comboBox.getSelectedIndex() == 3) {
+					cantidad = 300;
+				} else if (comboBox.getSelectedIndex() == 4) {
+					cantidad = 400;
+				} else if (comboBox.getSelectedIndex() == 5) {
+					cantidad = 500;
+				} else if (comboBox.getSelectedIndex() == 6) {
+					cantidad = 600;
+				} else if (comboBox.getSelectedIndex() == 7) {
+					cantidad = 700;
+				} else if (comboBox.getSelectedIndex() == 8) {
+					cantidad = 800;
+				} else if (comboBox.getSelectedIndex() == 9) {
+					cantidad = 900;
+				} else if (comboBox.getSelectedIndex() == 10) {
+					cantidad = 1000;
+				}
+				
 				elusuario.setDni(campoDNI.getText());
 				elusuario.setName(campoUsuario.getText());
 				elusuario.setPassword(String.valueOf(campoContrasena.getPassword()));
-				elusuario.setBalance(comboBox.getSelectedIndex());
+				elusuario.setBalance(cantidad = 1000);
 				elusuario.setDate_of_birth(fechas);
 				
 				cont.insertarUsuario(elusuario);
@@ -242,6 +267,12 @@ public class VentanaLogin extends JDialog implements ActionListener{
 			campoContrasenaVisible.setText(campoContrasena.getText());
 			campoContrasenaVisible.setVisible(mostrar);
 			campoContrasena.setVisible(!mostrar);
+		}
+		
+		if (e.getSource() == btnRegresar) {
+			VentanaInicial vl=new VentanaInicial(cont);
+			vl.setVisible(true);
+			this.dispose();
 		}
 	}
 }
