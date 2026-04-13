@@ -42,6 +42,7 @@ public class VentanaRuletaRusa extends JFrame implements ActionListener {
 	private JLabel lblFour;
 	private JLabel lblFive;
 	private JLabel lblSix;
+	private int respuesta = 0;
 
 
 	public VentanaRuletaRusa(LoginControlador cont, User elusuario) {
@@ -75,68 +76,68 @@ public class VentanaRuletaRusa extends JFrame implements ActionListener {
 		btnRevolver.setFont(new Font("Tahoma", Font.ITALIC, 18));
 		btnRevolver.setBounds(518, 289, 483, 242);
 		contentPane.add(btnRevolver);
-		
+
 		btnBala2 = new JButton("");
-		btnBala2.setIcon(new ImageIcon("D:\\eclipse-workspace\\GamblingWithKirk\\imagenes\\municionLast 2.png"));
+		btnBala2.setIcon(new ImageIcon("imagenes/municionLast 2.png"));
 		btnBala2.setBounds(518, 587, 90, 227);
 		contentPane.add(btnBala2);
-		
+
 		btnBala1 = new JButton("");
 		btnBala1.setEnabled(true);
-		btnBala1.setIcon(new ImageIcon("D:\\eclipse-workspace\\GamblingWithKirk\\imagenes\\municionLast 2.png"));
+		btnBala1.setIcon(new ImageIcon("imagenes/municionLast 2.png"));
 		btnBala1.setBounds(428, 587, 90, 227);
 		contentPane.add(btnBala1);
-		
+
 		btnBala6 = new JButton("");
-		btnBala6.setIcon(new ImageIcon("D:\\eclipse-workspace\\GamblingWithKirk\\imagenes\\municionLast 2.png"));
+		btnBala6.setIcon(new ImageIcon("imagenes/municionLast 2.png"));
 		btnBala6.setBounds(1002, 587, 90, 227);
 		contentPane.add(btnBala6);
-		
+
 		btnBala4 = new JButton("");
-		btnBala4.setIcon(new ImageIcon("D:\\eclipse-workspace\\GamblingWithKirk\\imagenes\\municionLast 2.png"));
+		btnBala4.setIcon(new ImageIcon("imagenes/municionLast 2.png"));
 		btnBala4.setBounds(820, 587, 90, 227);
 		contentPane.add(btnBala4);
-		
+
 		btnBala5 = new JButton("");
-		btnBala5.setIcon(new ImageIcon("D:\\eclipse-workspace\\GamblingWithKirk\\imagenes\\municionLast 2.png"));
+		btnBala5.setIcon(new ImageIcon("imagenes/municionLast 2.png"));
 		btnBala5.setBounds(911, 587, 90, 227);
 		contentPane.add(btnBala5);
-		
+
 		btnBala3 = new JButton("");
-		btnBala3.setIcon(new ImageIcon("D:\\eclipse-workspace\\GamblingWithKirk\\imagenes\\municionLast 2.png"));
+		btnBala3.setIcon(new ImageIcon("imagenes/municionLast 2.png"));
 		btnBala3.setBounds(610, 587, 90, 227);
 		contentPane.add(btnBala3);
-		
+
 		lblOne = new JLabel("ONE");
 		lblOne.setHorizontalAlignment(SwingConstants.CENTER);
 		lblOne.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblOne.setBounds(428, 560, 90, 25);
 		contentPane.add(lblOne);
-		
+
 		lblTwo = new JLabel("TWO");
 		lblTwo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTwo.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblTwo.setBounds(518, 560, 90, 25);
 		contentPane.add(lblTwo);
-		
+
 		lblThree = new JLabel("THREE");
 		lblThree.setHorizontalAlignment(SwingConstants.CENTER);
 		lblThree.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblThree.setBounds(610, 560, 90, 25);
 		contentPane.add(lblThree);
-		
+
 		lblFour = new JLabel("FOUR");
 		lblFour.setHorizontalAlignment(SwingConstants.CENTER);
 		lblFour.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblFour.setBounds(820, 560, 90, 25);
 		contentPane.add(lblFour);
-		
+
 		lblFive = new JLabel("FIVE");
 		lblFive.setHorizontalAlignment(SwingConstants.CENTER);
 		lblFive.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblFive.setBounds(911, 560, 90, 25);
 		contentPane.add(lblFive);
-		
+
 		lblSix = new JLabel("SIX");
 		lblSix.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSix.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -151,7 +152,7 @@ public class VentanaRuletaRusa extends JFrame implements ActionListener {
 		this.btnBala4.addActionListener(this);
 		this.btnBala5.addActionListener(this);
 		this.btnBala6.addActionListener(this);
-		
+
 		this.btnRevolver.addActionListener(this);
 		cont.obtenerStadisticas(elusuario);
 		
@@ -162,39 +163,125 @@ public class VentanaRuletaRusa extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		
+
 		if(e.getSource()==btnBala1) {
 			btnBala1.setEnabled(false);
-			btnBala2.setVisible(false);
-			btnBala3.setVisible(false);
-			btnBala4.setVisible(false);
-			btnBala5.setVisible(false);
-			btnBala6.setVisible(false);
+			btnBala2.setEnabled(false);
+			btnBala3.setEnabled(false);
+			btnBala4.setEnabled(false);
+			btnBala5.setEnabled(false);
+			btnBala6.setEnabled(false);
 			lblDato7.setText("Lets Play");
 			lblDato7.setBounds(626, 241, 267, 25);
 			btnRevolver.setEnabled(true);
-			
+			respuesta = 1;
 		}
-		
+
+		if(e.getSource()==btnBala2) {
+			btnBala1.setEnabled(false);
+			btnBala2.setEnabled(false);
+			btnBala3.setEnabled(false);
+			btnBala4.setEnabled(false);
+			btnBala5.setEnabled(false);
+			btnBala6.setEnabled(false);
+			lblDato7.setText("Lets Play");
+			lblDato7.setBounds(626, 241, 267, 25);
+			btnRevolver.setEnabled(true);
+			respuesta = 2;
+		}
+
+		if(e.getSource()==btnBala3) {
+			btnBala1.setEnabled(false);
+			btnBala2.setEnabled(false);
+			btnBala3.setEnabled(false);
+			btnBala4.setEnabled(false);
+			btnBala5.setEnabled(false);
+			btnBala6.setEnabled(false);
+			lblDato7.setText("Lets Play");
+			lblDato7.setBounds(626, 241, 267, 25);
+			btnRevolver.setEnabled(true);
+			respuesta = 3;
+		}
+
+		if(e.getSource()==btnBala4) {
+			btnBala1.setEnabled(false);
+			btnBala2.setEnabled(false);
+			btnBala3.setEnabled(false);
+			btnBala4.setEnabled(false);
+			btnBala5.setEnabled(false);
+			btnBala6.setEnabled(false);
+			lblDato7.setText("Lets Play");
+			lblDato7.setBounds(626, 241, 267, 25);
+			btnRevolver.setEnabled(true);
+			respuesta = 4;
+		}
+
+		if(e.getSource()==btnBala5) {
+			btnBala1.setEnabled(false);
+			btnBala2.setEnabled(false);
+			btnBala3.setEnabled(false);
+			btnBala4.setEnabled(false);
+			btnBala5.setEnabled(false);
+			btnBala6.setEnabled(false);
+			lblDato7.setText("Lets Play");
+			lblDato7.setBounds(626, 241, 267, 25);
+			btnRevolver.setEnabled(true);
+			respuesta = 5;
+		}
+
+		if(e.getSource()==btnBala6) {
+			btnBala1.setEnabled(false);
+			btnBala2.setEnabled(false);
+			btnBala3.setEnabled(false);
+			btnBala4.setEnabled(false);
+			btnBala5.setEnabled(false);
+			btnBala6.setEnabled(false);
+			lblDato7.setText("Lets Play");
+			lblDato7.setBounds(626, 241, 267, 25);
+			btnRevolver.setEnabled(true);
+			respuesta = 6;
+		}
+
 		if(e.getSource()==btnRevolver) {
-			int numero = (int)(Math.random() * 6) + 1;
-			System.out.println(numero);
+			int numeroR = 1; //para probar
+			
+			//int numeroR = (int)(Math.random() * 6) + 1;
+			System.out.println(numeroR);
+			System.out.println(respuesta);
 
-			btnRevolver.setIcon(new ImageIcon("imagenes/revolverGif.gif"));
-			Timer timer = new Timer(1200, new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					btnRevolver.setIcon(new ImageIcon("imagenes/revolverLast.jpg"));
+			if (numeroR == respuesta) {
 
-				}
-			});
-			timer.setRepeats(false);
-	        timer.start();
-	        
-	       
+				btnRevolver.setIcon(new ImageIcon("imagenes/revolverGif.gif"));
+				Timer timer = new Timer(1200, new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						btnRevolver.setIcon(new ImageIcon("imagenes/revolverLast.jpg"));
+						HasMuerto sJ=new HasMuerto(this, cont, elusuario);
+						sJ.setVisible(true);
+						HasMuerto.setLocation(350, 400);
+
+					}
+				});
+				timer.setRepeats(false);
+				timer.start();
+
+			} else {
+				
+				btnRevolver.setIcon(new ImageIcon("imagenes/revolverGif.gif"));
+				Timer timer = new Timer(800, new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						btnRevolver.setIcon(new ImageIcon("imagenes/revolverLast.jpg"));
+
+						SelecionJuego sJ=new SelecionJuego(cont, elusuario);
+						sJ.setVisible(true);
+
+					}
+				});
+				timer.setRepeats(false);
+				timer.start();
+				
+			}
 		}
-		/* this.dispose();
-			SelecionJuego sJ=new SelecionJuego(cont, elusuario);
-			sJ.setVisible(true); */
-		
 	}
 }

@@ -9,6 +9,10 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import controlador.LoginControlador;
+import modelo.User;
+
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import java.awt.Toolkit;
@@ -21,17 +25,23 @@ public class HasMuerto extends JDialog implements ActionListener {
 	private JLabel miniIcono;
 	private JLabel TextoGanado;
 	private JButton SeguirJugando;
+	private LoginControlador cont;
+	private User elusuario;
+	private JDialog VentanaRuletaRusa;
 
 
-	public HasMuerto() {
+	public HasMuerto(JDialog VentanaRuletaRusa, LoginControlador cont, User elusuario) {
+		this.VentanaRuletaRusa = VentanaRuletaRusa;
+		this.cont = cont;
+		this.elusuario = elusuario;
 		setIconImage(Toolkit.getDefaultToolkit().getImage("imagenes/miniIconoV2.png"));
+		setAlwaysOnTop(true);
+		setUndecorated(true);
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBackground(new Color(0, 0, 0));
-		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
-		this.setLocation(0, 0);
 
 		miniIcono = new JLabel("");
 		miniIcono.setIcon(new ImageIcon("imagenes/miniIconoV2.png"));
@@ -45,22 +55,24 @@ public class HasMuerto extends JDialog implements ActionListener {
 		contentPanel.add(TextoGanado);
 
 		SeguirJugando = new JButton("");
-		SeguirJugando.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		SeguirJugando.setIcon(new ImageIcon("imagenes/contiarDespuesDeMorirV3.png"));
-		SeguirJugando.setBounds(114, 168, 244, 44);
+		SeguirJugando.setIcon(new ImageIcon("imagenes/contiarDespuesDeMorir.png"));
+		SeguirJugando.setBounds(114, 168, 206, 44);
 		contentPanel.add(SeguirJugando);
-
-		
-			
 
 	}
 
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		
+		if(e.getSource()==SeguirJugando) {
+			//cont.borrarUsuario(elusuario);
+			VentanaInicial vI=new VentanaInicial(cont);
+			vI.setVisible(true);
+			this.dispose();		
+		}
+		
+		
 
 	}
 }
