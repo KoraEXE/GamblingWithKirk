@@ -63,7 +63,16 @@ public class VentanaBlackJack extends JDialog implements ActionListener {
 	private LoginControlador cont;
 	private int racha = 1;
 	private int rachaReal = 0;
-	private boolean n21s = false;
+	private boolean n21s = false;	
+	
+	//Stats para mostrar
+	private int vecesJugadas = 0; //realizado
+	private int vecesGanadas = 0;
+	private int vecesPerdidas = 0;
+	private int maxCombo = 0;
+	private int total21s = 0; //realizado
+	private double totalPerdido = 0;
+	private double totalGanado = 0;	
 
 	public VentanaBlackJack(LoginControlador cont, User elusuario) {
 		this.cont = cont;
@@ -73,6 +82,8 @@ public class VentanaBlackJack extends JDialog implements ActionListener {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
+		this.setSize(1536, 864);
+		this.setLocation(0, 0);
 
 		dineroJugador = new JLabel((String) null);
 		dineroJugador.setHorizontalAlignment(SwingConstants.LEFT);
@@ -99,42 +110,42 @@ public class VentanaBlackJack extends JDialog implements ActionListener {
 		contentPanel.add(textoNombreJugador);
 
 		Crupier2 = new JLabel("");
-		Crupier2.setIcon(new ImageIcon("imagenes/trasera.jpg"));
-		Crupier2.setBounds(826, 237, 113, 151);
+		Crupier2.setIcon(new ImageIcon("C:\\Users\\1dami\\eclipse-workspace\\GamblingWithKirk\\imagenes\\trasera.jpg"));
+		Crupier2.setBounds(695, 115, 113, 151);
 		contentPanel.add(Crupier2);
 		Crupier2.setVisible(false);
 
 		sumaTotalReal = new JLabel("0");
 		sumaTotalReal.setHorizontalAlignment(SwingConstants.CENTER);
 		sumaTotalReal.setFont(new Font("Tahoma", Font.BOLD, 20));
-		sumaTotalReal.setBounds(924, 499, 39, 31);
+		sumaTotalReal.setBounds(846, 383, 39, 31);
 		contentPanel.add(sumaTotalReal);
 		sumaTotalReal.setVisible(false);
 
 		NoMostrar2 = new JLabel("");
-		NoMostrar2.setIcon(new ImageIcon("imagenes/trasera.jpg"));
-		NoMostrar2.setBounds(1018, 190, 113, 151);
+		NoMostrar2.setIcon(new ImageIcon("C:\\Users\\1dami\\eclipse-workspace\\GamblingWithKirk\\imagenes\\trasera.jpg"));
+		NoMostrar2.setBounds(878, 53, 113, 151);
 		contentPanel.add(NoMostrar2);
 
 		NuevoCrupier = new JLabel("");
-		NuevoCrupier.setIcon(new ImageIcon("imagenes/trasera.jpg"));
-		NuevoCrupier.setBounds(1018, 190, 113, 151);
+		NuevoCrupier.setIcon(new ImageIcon("C:\\Users\\1dami\\eclipse-workspace\\GamblingWithKirk\\imagenes\\trasera.jpg"));
+		NuevoCrupier.setBounds(878, 53, 113, 151);
 		contentPanel.add(NuevoCrupier);
 
 		NoMostrar1 = new JLabel("");
-		NoMostrar1.setIcon(new ImageIcon("imagenes/trasera.jpg"));
-		NoMostrar1.setBounds(772, 190, 113, 151);
+		NoMostrar1.setIcon(new ImageIcon("C:\\Users\\1dami\\eclipse-workspace\\GamblingWithKirk\\imagenes\\trasera.jpg"));
+		NoMostrar1.setBounds(643, 53, 113, 151);
 		contentPanel.add(NoMostrar1);
 
 		Carta3 = new JLabel("");
-		Carta3.setIcon(new ImageIcon("imagenes/trasera.jpg"));
-		Carta3.setBounds(850, 651, 113, 151);
+		Carta3.setIcon(new ImageIcon("C:\\Users\\1dami\\eclipse-workspace\\GamblingWithKirk\\imagenes\\trasera.jpg"));
+		Carta3.setBounds(742, 608, 113, 151);
 		contentPanel.add(Carta3);
 		Carta3.setVisible(false);
 
 		Carta2 = new JLabel("");
-		Carta2.setIcon(new ImageIcon("imagenes/trasera.jpg"));
-		Carta2.setBounds(803, 619, 113, 151);
+		Carta2.setIcon(new ImageIcon("C:\\Users\\1dami\\eclipse-workspace\\GamblingWithKirk\\imagenes\\trasera.jpg"));
+		Carta2.setBounds(695, 542, 113, 151);
 		contentPanel.add(Carta2);
 		Carta2.setVisible(false);
 		{
@@ -151,78 +162,78 @@ public class VentanaBlackJack extends JDialog implements ActionListener {
 		contentPanel.add(ComboIcon);
 
 		CartaNueva = new JLabel("");
-		CartaNueva.setIcon(new ImageIcon("imagenes/trasera.jpg"));
-		CartaNueva.setBounds(1018, 597, 113, 151);
+		CartaNueva.setIcon(new ImageIcon("C:\\Users\\1dami\\eclipse-workspace\\GamblingWithKirk\\imagenes\\trasera.jpg"));
+		CartaNueva.setBounds(878, 466, 113, 151);
 		contentPanel.add(CartaNueva);
 
 		Carta1 = new JLabel("");
-		Carta1.setIcon(new ImageIcon("imagenes/trasera.jpg"));
-		Carta1.setBounds(772, 597, 113, 151);
+		Carta1.setIcon(new ImageIcon("C:\\Users\\1dami\\eclipse-workspace\\GamblingWithKirk\\imagenes\\trasera.jpg"));
+		Carta1.setBounds(643, 466, 113, 151);
 		contentPanel.add(Carta1);
 
 		Crupier1 = new JLabel("");
-		Crupier1.setIcon(new ImageIcon("imagenes/trasera.jpg"));
-		Crupier1.setBounds(772, 190, 113, 151);
+		Crupier1.setIcon(new ImageIcon("C:\\Users\\1dami\\eclipse-workspace\\GamblingWithKirk\\imagenes\\trasera.jpg"));
+		Crupier1.setBounds(643, 53, 113, 151);
 		contentPanel.add(Crupier1);
 
 		BotonPedir = new JButton("Pedir");
 		BotonPedir.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		BotonPedir.setBounds(772, 870, 113, 43);
+		BotonPedir.setBounds(376, 588, 113, 43);
 		contentPanel.add(BotonPedir);
 		BotonPedir.setEnabled(false);
 
 		BotonParar = new JButton("Parar");
 		BotonParar.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		BotonParar.setBounds(1018, 870, 113, 43);
+		BotonParar.setBounds(515, 588, 113, 43);
 		contentPanel.add(BotonParar);
 		BotonParar.setEnabled(false);
 
 		TextSuma = new JLabel("Suma Total:");
 		TextSuma.setHorizontalAlignment(SwingConstants.RIGHT);
 		TextSuma.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		TextSuma.setBounds(750, 541, 166, 31);
+		TextSuma.setBounds(678, 425, 166, 31);
 		contentPanel.add(TextSuma);
 
 		SumaTotal = new JLabel("0");
 		SumaTotal.setHorizontalAlignment(SwingConstants.CENTER);
 		SumaTotal.setFont(new Font("Tahoma", Font.BOLD, 20));
-		SumaTotal.setBounds(924, 541, 39, 31);
+		SumaTotal.setBounds(846, 424, 39, 31);
 		contentPanel.add(SumaTotal);
 
 		TextoApostar = new JLabel("Cuanto quieres apostar?");
 		TextoApostar.setHorizontalAlignment(SwingConstants.CENTER);
 		TextoApostar.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		TextoApostar.setBounds(356, 696, 294, 31);
+		TextoApostar.setBounds(354, 476, 294, 31);
 		contentPanel.add(TextoApostar);
 
 		Apuesta = new JTextField();
 		Apuesta.setHorizontalAlignment(SwingConstants.CENTER);
 		Apuesta.setText("Introduce la apuesta");
-		Apuesta.setBounds(418, 750, 171, 20);
+		Apuesta.setBounds(417, 517, 171, 20);
 		contentPanel.add(Apuesta);
 		Apuesta.setColumns(10);
 
 		botonJugar = new JButton("JUGAR");
-		botonJugar.setBounds(428, 781, 147, 36);
+		botonJugar.setBounds(427, 542, 147, 36);
 		contentPanel.add(botonJugar);
 
 
 		TextSumaCrupier = new JLabel("Suma Total Crupier:");
 		TextSumaCrupier.setHorizontalAlignment(SwingConstants.RIGHT);
 		TextSumaCrupier.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		TextSumaCrupier.setBounds(750, 499, 166, 31);
+		TextSumaCrupier.setBounds(678, 384, 166, 31);
 		contentPanel.add(TextSumaCrupier);
 
 		SumaTotalCrupier1 = new JLabel("0");
 		SumaTotalCrupier1.setHorizontalAlignment(SwingConstants.CENTER);
 		SumaTotalCrupier1.setFont(new Font("Tahoma", Font.BOLD, 20));
-		SumaTotalCrupier1.setBounds(924, 499, 39, 31);
+		SumaTotalCrupier1.setBounds(846, 383, 39, 31);
 		contentPanel.add(SumaTotalCrupier1);
 
 		TextoInfo = new JLabel("");
 		TextoInfo.setHorizontalAlignment(SwingConstants.CENTER);
 		TextoInfo.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		TextoInfo.setBounds(577, 371, 749, 98);
+		TextoInfo.setBounds(487, 276, 749, 98);
 		contentPanel.add(TextoInfo);
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setSize(screenSize);
@@ -259,6 +270,13 @@ public class VentanaBlackJack extends JDialog implements ActionListener {
 		bkj.iniciarJuego(f, totalBaraja );
 
 		if (e.getSource() == botonJugar) {
+			
+			//Hacer que obtenga los datos de la base de datos
+			
+			vecesJugadas ++;
+			
+			//añadir a la base de datos
+			
 			//resetear las cartas
 			Crupier1.setIcon(new ImageIcon("imagenes/trasera.jpg"));
 			Carta1.setIcon(new ImageIcon("imagenes/trasera.jpg"));
@@ -437,15 +455,27 @@ public class VentanaBlackJack extends JDialog implements ActionListener {
 		Apuesta.setText("Introduce la apuesta");
 
 		if (resultado.equals("GANAR")) {
+			
+			//Hacer que obtenga los datos de la base de datos
+			
+			vecesGanadas ++;
+			
+			//añadir a la base de datos
 			TextoInfo.setText("¡Has ganado!");
 			Victoria victoria = new Victoria(this, elusuario);
-			victoria.setLocation(400, 600); //posición
+			victoria.setLocation(350, 400); //posición
 			victoria.setVisible(true);
 
 		} else if (resultado.equals("PERDER")) {
+			
+			//Hacer que obtenga los datos de la base de datos
+			
+			vecesPerdidas ++;
+			
+			//añadir a la base de datos
 			TextoInfo.setText("¡Has perdido!");
 			Derrota derrota = new Derrota(this, elusuario);
-			derrota.setLocation(400, 600); //posición
+			derrota.setLocation(350, 400); //posición
 			derrota.setVisible(true);
 
 
@@ -454,7 +484,10 @@ public class VentanaBlackJack extends JDialog implements ActionListener {
 		}
 	}
 
-	private void gestionRYD(String resultado) { //Gestion rachas y dinero
+	private void gestionRYD(String resultado) { 
+		
+		
+		//Gestion rachas y dinero
 		//Aumenta 0,10 el multiplicador de dinero por cada victoria hasta un maximo de 0,1
 		//Si ha sido blackjack aumentara un 0,25 en vez de 0,10
 		//Despues de 5 ganadas no se sumaran nada mas
@@ -463,13 +496,35 @@ public class VentanaBlackJack extends JDialog implements ActionListener {
 
 			if (n21s) {
 				elusuario.setBalance(elusuario.getBalance() + cantidad * (1.2 + 0.1 * racha + 0.25)); //aumenta si es por hacer 21
+				
+				//Hacer que obtenga los datos de la base de datos
+				
+				total21s ++; 
+				
+				//añadir a la base de datos
+				
 			} else {
 				elusuario.setBalance(elusuario.getBalance() + cantidad * (1.2 + 0.1 * racha));
+				
+				//Hacer que obtenga los datos de la base de datos
+				
+			
+				totalGanado ++;
+				
+				//añadir a la base de datos
 			}
 
 			if (racha <= 4) { 
 				racha ++;
 				rachaReal ++; //para la pagina web
+				
+				//Hacer que obtenga los datos de la base de datos
+				
+				maxCombo = rachaReal;
+				totalPerdido ++;
+				totalGanado ++;
+				
+				//añadir a la base de datos
 			}
 			ComboIcon.setText(String.valueOf(rachaReal));
 		} else if (resultado.equals("EMPATE")) {		
@@ -479,7 +534,13 @@ public class VentanaBlackJack extends JDialog implements ActionListener {
 				elusuario.setBalance(elusuario.getBalance() + cantidad);
 			}
 			ComboIcon.setText(String.valueOf(rachaReal));
-		} else if (resultado.equals("PERDER")) {		
+		} else if (resultado.equals("PERDER")) {
+			
+			//Hacer que obtenga los datos de la base de datos
+			
+			totalPerdido = totalPerdido - cantidad ;
+			
+			//añadir a la base de datos
 			racha = 1;
 			ComboIcon.setText(String.valueOf(racha));
 			ComboIcon.setText(String.valueOf(rachaReal));

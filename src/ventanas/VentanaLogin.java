@@ -1,7 +1,4 @@
 package ventanas;
-
-import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
@@ -59,8 +56,7 @@ public class VentanaLogin extends JDialog implements ActionListener{
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		this.setSize(screenSize);
+		this.setSize(1536, 864);
 		this.setLocation(0, 0);
 
 		setContentPane(contentPane);
@@ -68,13 +64,13 @@ public class VentanaLogin extends JDialog implements ActionListener{
 
 		campoUsuario = new JTextField();
 		campoUsuario.setFont(new Font("Tahoma", Font.PLAIN, 24));
-		campoUsuario.setBounds(849, 296, 206, 35);
+		campoUsuario.setBounds(658, 296, 206, 35);
 		contentPane.add(campoUsuario);
 		campoUsuario.setColumns(10);
 
 		campoContrasena = new JPasswordField();
 		campoContrasena.setFont(new Font("Tahoma", Font.PLAIN, 24));
-		campoContrasena.setBounds(849, 342, 206, 35);
+		campoContrasena.setBounds(658, 342, 206, 35);
 		contentPane.add(campoContrasena);
 
 		campoContrasenaVisible = new JTextField();
@@ -84,82 +80,82 @@ public class VentanaLogin extends JDialog implements ActionListener{
 		contentPane.add(campoContrasenaVisible);
 
 		mostrarContrasena = new JCheckBox("See Password");
-		mostrarContrasena.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		mostrarContrasena.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		mostrarContrasena.setHorizontalAlignment(SwingConstants.CENTER);
-		mostrarContrasena.setBounds(1089, 342, 138, 31);
+		mostrarContrasena.setBounds(870, 346, 196, 31);
 		contentPane.add(mostrarContrasena);
 		mostrarContrasena.addActionListener(this);
 
 		JLabel TextUsuario = new JLabel("User:");
 		TextUsuario.setFont(new Font("Tahoma", Font.PLAIN, 24));
-		TextUsuario.setBounds(697, 293, 138, 40);
+		TextUsuario.setBounds(510, 293, 138, 40);
 		contentPane.add(TextUsuario);
 
 		JLabel TextContarseña = new JLabel("Password:");
 		TextContarseña.setFont(new Font("Tahoma", Font.PLAIN, 24));
-		TextContarseña.setBounds(697, 339, 138, 40);
+		TextContarseña.setBounds(510, 339, 138, 40);
 		contentPane.add(TextContarseña);
 
 		TextRespuesta = new JLabel("");
 		TextRespuesta.setHorizontalAlignment(SwingConstants.CENTER);
-		TextRespuesta.setBounds(527, 480, 274, 35);
+		TextRespuesta.setBounds(354, 491, 274, 35);
 		contentPane.add(TextRespuesta);
 
 		JLabel TextRegistrar = new JLabel("Register");
 		TextRegistrar.setHorizontalAlignment(SwingConstants.CENTER);
 		TextRegistrar.setFont(new Font("Tahoma", Font.PLAIN, 60));
-		TextRegistrar.setBounds(775, 139, 354, 82);
+		TextRegistrar.setBounds(584, 139, 354, 82);
 		contentPane.add(TextRegistrar);
 
 		ImageIcon lblimagen = new ImageIcon("imagenes/G.jpg");
 		JLabel lblImagen = new JLabel(lblimagen);
 		lblImagen.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblImagen.setHorizontalAlignment(SwingConstants.CENTER);
-		lblImagen.setBounds(804, 564, 325, 314);
+		lblImagen.setBounds(599, 564, 325, 314);
 		contentPane.add(lblImagen);
 
 		JLabel TextBalance = new JLabel("Balance:");
 		TextBalance.setFont(new Font("Tahoma", Font.PLAIN, 24));
-		TextBalance.setBounds(697, 427, 138, 40);
+		TextBalance.setBounds(510, 430, 138, 40);
 		contentPane.add(TextBalance);
 		
 		comboBox = new JComboBox();
 		comboBox.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"-- Select Import --","100","200","300","400","500","600","700","800","900","1000"}));
 		comboBox.setSelectedIndex(0);
-		comboBox.setBounds(849, 434, 206, 31);
+		comboBox.setBounds(658, 434, 206, 31);
 		contentPane.add(comboBox);
 
 		btnLogin = new JButton("Login");
 		btnLogin.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnLogin.setBounds(831, 491, 241, 35);
+		btnLogin.setBounds(640, 491, 241, 35);
 		contentPane.add(btnLogin);
 
 		JLabel TextDNI = new JLabel("DNI:");
 		TextDNI.setFont(new Font("Tahoma", Font.PLAIN, 24));
-		TextDNI.setBounds(697, 247, 138, 40);
+		TextDNI.setBounds(510, 247, 138, 40);
 		contentPane.add(TextDNI);
 
 		campoDNI = new JTextField();
 		campoDNI.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		campoDNI.setColumns(10);
-		campoDNI.setBounds(849, 250, 206, 35);
+		campoDNI.setBounds(658, 250, 206, 35);
 		contentPane.add(campoDNI);
 
 		JLabel TextFechaNacimiento = new JLabel("Birth Date:");
 		TextFechaNacimiento.setFont(new Font("Tahoma", Font.PLAIN, 24));
-		TextFechaNacimiento.setBounds(697, 390, 138, 40);
+		TextFechaNacimiento.setBounds(510, 389, 138, 40);
 		contentPane.add(TextFechaNacimiento);
 
 		campoFechaNacimiento = new JTextField();
 		campoFechaNacimiento.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		campoFechaNacimiento.setColumns(10);
-		campoFechaNacimiento.setBounds(849, 388, 206, 35);
+		campoFechaNacimiento.setBounds(658, 388, 206, 35);
 		contentPane.add(campoFechaNacimiento);
 		
 		btnRegresar = new JButton("Go Back");
 		btnRegresar.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnRegresar.setBounds(831, 536, 241, 35);
+		btnRegresar.setBounds(640, 536, 241, 35);
 		contentPane.add(btnRegresar);
 		
 		btnLogin.addActionListener(this);

@@ -43,8 +43,7 @@ public class SelecionJuego extends JDialog implements ActionListener {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
-		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		this.setSize(screenSize);
+		this.setSize(1536, 864);
 		this.setLocation(0, 0);
 		
 		
@@ -74,49 +73,49 @@ public class SelecionJuego extends JDialog implements ActionListener {
 		
 		{
 			JLabel lblNewLabel = new JLabel("");
-			lblNewLabel.setBounds(661, 0, 581, 387);
+			lblNewLabel.setBounds(470, 0, 581, 387);
 			lblNewLabel.setIcon(new ImageIcon("imagenes/SelecionaJuego V1.png"));
 			lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 			contentPanel.add(lblNewLabel);
 		}
 		{
 			blackJack = new JButton("1. BLACK JACK");
-			blackJack.setBounds(773, 469, 357, 71);
+			blackJack.setBounds(582, 397, 357, 71);
 			contentPanel.add(blackJack);
 			this.blackJack.addActionListener(this);
 		}
 		{
 			stats = new JButton("2. STATS");
-			stats.setBounds(773, 551, 357, 71);
+			stats.setBounds(582, 478, 357, 71);
 			contentPanel.add(stats);
 		}
 		{
 			cerrarSesion = new JButton("3. CERRAR SESIÓN");
-			cerrarSesion.setBounds(773, 633, 357, 71);
+			cerrarSesion.setBounds(582, 559, 357, 71);
 			contentPanel.add(cerrarSesion);
 			cerrarSesion.addActionListener(this);
 		}
 		{
 			borrar = new JButton("4. BORRAR");
-			borrar.setBounds(773, 715, 357, 71);
+			borrar.setBounds(582, 640, 357, 71);
 			contentPanel.add(borrar);
 			this.borrar.addActionListener(this);
 		}
 		{
 			pray = new JButton("5. PRAY");
-			pray.setBounds(773, 797, 357, 71);
+			pray.setBounds(582, 721, 357, 71);
 			contentPanel.add(pray);
 		}
 		{
 			JLabel lblNewLabel_1 = new JLabel("");
 			lblNewLabel_1.setIcon(new ImageIcon("imagenes/Balatro2.png"));
-			lblNewLabel_1.setBounds(0, 0, 661, 1041);
+			lblNewLabel_1.setBounds(0, 0, 572, 827);
 			contentPanel.add(lblNewLabel_1);
 		}
 		{
 			JLabel lblNewLabel_1 = new JLabel("");
 			lblNewLabel_1.setIcon(new ImageIcon("imagenes/Balatro1.png"));
-			lblNewLabel_1.setBounds(1243, 0, 661, 1041);
+			lblNewLabel_1.setBounds(949, 0, 573, 827);
 			contentPanel.add(lblNewLabel_1);
 		}
 

@@ -174,6 +174,7 @@ public class ImplementacionBD implements UsuarioDAO{
 		stmt.setString(1, usuario.getDni());
 		if (stmt.executeUpdate() > 0) {
 			ok = true;
+			
 		}
 		stmt.close();
 		con.close();

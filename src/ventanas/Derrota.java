@@ -82,10 +82,10 @@ public class Derrota extends JDialog implements ActionListener {
 		// TODO Auto-generated method stub
 		//si se pulsa el boton de perder la racha se cierra la ventana y vuelve a la ventana de seleccion de juego
 		if(e.getSource()==PerderLaRacha) {
-			SelecionJuego sJ=new SelecionJuego(cont, elusuario);
-			sJ.setVisible(true);
 			VentanaBlackJack.dispose();
 			this.dispose();
+			SelecionJuego sJ=new SelecionJuego(cont, elusuario);
+			sJ.setVisible(true);
 		}
 		
 		if(e.getSource()==SeguirJugando) {
