@@ -106,6 +106,7 @@ public class SelecionJuego extends JDialog implements ActionListener {
 			pray = new JButton("5. PRAY");
 			pray.setBounds(582, 721, 357, 71);
 			contentPanel.add(pray);
+			this.pray.addActionListener(this);
 		}
 		{
 			JLabel lblNewLabel_1 = new JLabel("");
@@ -147,6 +148,12 @@ public class SelecionJuego extends JDialog implements ActionListener {
 		
 		if (e.getSource()==stats) {
 			VentanaEstadisticas vI=new VentanaEstadisticas(cont, elusuario);
+			vI.setVisible(true);
+			this.dispose();
+		}
+		
+		if (e.getSource()==pray) {
+			VentanaRuletaRusa vI=new VentanaRuletaRusa(cont, elusuario);
 			vI.setVisible(true);
 			this.dispose();
 		}
