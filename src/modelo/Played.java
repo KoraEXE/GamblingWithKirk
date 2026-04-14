@@ -3,13 +3,69 @@ package modelo;
 import java.time.LocalDate;
 
 public class Played{
-	private LocalDate date;
+	private String dni;
+	private String idMesa;
+	private int apuestaEnJuego;
 	private Result Result;
+	private LocalDate date;
 	
-	public Played(LocalDate date, modelo.Result result) {
-		this.date = date;
+	public Played(String dni, String idMesa, int apuestaEnJuego, modelo.Result result, LocalDate date) {
+		super();
+		this.dni = dni;
+		this.idMesa = idMesa;
+		this.apuestaEnJuego = apuestaEnJuego;
 		Result = result;
+		this.date = date;
 	}
+	
+	public Played(String dni, String idMesa, int apuestaEnJuego, LocalDate date) {
+		super();
+		this.dni = dni;
+		this.idMesa = idMesa;
+		this.apuestaEnJuego = apuestaEnJuego;
+		this.date = date;
+	}
+	
+	public Played() {
+		
+	}
+
+	public String getDni() {
+		return dni;
+	}
+
+
+
+	public void setDni(String dni) {
+		this.dni = dni;
+	}
+
+
+
+	public String getIdMesa() {
+		return idMesa;
+	}
+
+
+
+	public void setIdMesa(String idMesa) {
+		this.idMesa = idMesa;
+	}
+
+
+
+	public int getApuestaEnJuego() {
+		return apuestaEnJuego;
+	}
+
+
+
+	public void setApuestaEnJuego(int apuestaEnJuego) {
+		this.apuestaEnJuego = apuestaEnJuego;
+	}
+
+
+
 	public LocalDate getDate() {
 		return date;
 	}

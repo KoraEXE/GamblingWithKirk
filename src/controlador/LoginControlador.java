@@ -1,6 +1,8 @@
 package controlador;
 
 import modelo.ImplementacionBD;
+import modelo.Play_On_Table;
+import modelo.Played;
 import modelo.User;
 import modelo.UsuarioDAO;
 import ventanas.VentanaInicial;
@@ -48,5 +50,13 @@ public class LoginControlador {
 	
 	public boolean actualuizarStadisticas (User usuario) {
 		return dao.actualuizarStadisticas(usuario);
+	}
+	
+	public boolean insertarJuego (Played played, User usuario, Play_On_Table table) {
+		return dao.insertarJuego(played, usuario, table);
+	}
+	
+	public boolean insertarMesa (Play_On_Table table) {
+		return dao.insertarMesa(table);
 	}
 }

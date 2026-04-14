@@ -3,7 +3,7 @@ package modelo;
 public class Play_On_Table {
 	private String id_table;
 	private double bet;
-	private GameType gametype;
+	private GameType gametype; //Solo blackJack
 	
 	public Play_On_Table(String id_table, double bet, GameType gametype) {
 		this.id_table = id_table;

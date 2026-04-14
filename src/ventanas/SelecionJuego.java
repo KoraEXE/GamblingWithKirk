@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import controlador.LoginControlador;
+import modelo.Play_On_Table;
 import modelo.User;
 
 import javax.swing.JLabel;
@@ -34,8 +35,10 @@ public class SelecionJuego extends JDialog implements ActionListener {
 	private JLabel textoDIneroJugador;
 	private JLabel textoNombreJugador;
 	private User elusuario;
+	private Play_On_Table table;
 
-	public SelecionJuego(LoginControlador controlador, User elusuario) {
+	public SelecionJuego(LoginControlador controlador, User elusuario, Play_On_Table table) {
+		this.table=table;
 		this.cont=controlador;
 		this.elusuario = elusuario;
 		setBounds(100, 100, 450, 300);
@@ -141,6 +144,7 @@ public class SelecionJuego extends JDialog implements ActionListener {
 		}
 		
 		if (e.getSource()==blackJack) {
+			cont.insertarMesa(table);
 			VentanaBlackJack vI=new VentanaBlackJack(cont, elusuario);
 			vI.setVisible(true);
 			this.dispose();

@@ -6,15 +6,10 @@ public class User {
 	private String dni;
 	private String name;
 	private String password;
-	private double balance;
 	private LocalDate date_of_birth;
 	private int vecesJugadas;
-	private int vecesGanadas;
-	private int vecesPerdidas;
 	private int maxCombo;
-	private int total21s;
-	private double totalPerdido;
-	private double totalGanado;	
+	private double balance;	
 	
 	public User(String dni, String name, String password, double balance, LocalDate date_of_birth) {
 		this.dni = dni;
@@ -26,12 +21,7 @@ public class User {
 	
 	public User(int vecesJugadas, int vecesGanadas, int vecesPerdidas, int maxCombo, int total21s, double totalPerdido, double totalGanado) {
 		this.vecesJugadas = vecesJugadas;
-		this.vecesGanadas = vecesGanadas;
-		this.vecesPerdidas = vecesPerdidas;
 		this.maxCombo = maxCombo;
-		this.total21s = total21s;
-		this.totalPerdido = totalPerdido;
-		this.totalGanado = totalGanado;
 	}
 	
 	public User(String name, String password) {
@@ -60,52 +50,12 @@ public class User {
 		this.vecesJugadas = vecesJugadas;
 	}
 
-	public int getVecesGanadas() {
-		return vecesGanadas;
-	}
-
-	public void setVecesGanadas(int vecesGanadas) {
-		this.vecesGanadas = vecesGanadas;
-	}
-
-	public int getVecesPerdidas() {
-		return vecesPerdidas;
-	}
-
-	public void setVecesPerdidas(int vecesPerdidas) {
-		this.vecesPerdidas = vecesPerdidas;
-	}
-
 	public int getMaxCombo() {
 		return maxCombo;
 	}
 
 	public void setMaxCombo(int maxCombo) {
 		this.maxCombo = maxCombo;
-	}
-
-	public int getTotal21s() {
-		return total21s;
-	}
-
-	public void setTotal21s(int total21s) {
-		this.total21s = total21s;
-	}
-
-	public double getTotalPerdido() {
-		return totalPerdido;
-	}
-
-	public void setTotalPerdido(double totalPerdido) {
-		this.totalPerdido = totalPerdido;
-	}
-
-	public double getTotalGanado() {
-		return totalGanado;
-	}
-
-	public void setTotalGanado(double totalGanado) {
-		this.totalGanado = totalGanado;
 	}
 
 	public String getDni() {
@@ -146,12 +96,5 @@ public class User {
 
 	public void setDate_of_birth(LocalDate date_of_birth) {
 		this.date_of_birth = date_of_birth;
-	}
-
-	@Override
-	public String toString() {
-		return "User [vecesJugadas=" + vecesJugadas + ", vecesGanadas=" + vecesGanadas + ", vecesPerdidas="
-				+ vecesPerdidas + ", maxCombo=" + maxCombo + ", total21s=" + total21s + ", totalPerdido=" + totalPerdido
-				+ ", totalGanado=" + totalGanado + "]";
 	}
 }

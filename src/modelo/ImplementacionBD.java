@@ -5,7 +5,10 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 public class ImplementacionBD implements UsuarioDAO{
@@ -32,15 +35,18 @@ public class ImplementacionBD implements UsuarioDAO{
 
 
 	// Sentencias SQL Fucionales
+	
+	final String sqlInsPlayed = "INSERT INTO PLAYED VALUES (?,?,?,?,?,?,?)";
+	final String sqlInsTablee = "INSERT INTO TABLEE VALUES (?,?,?)";
 
 	final String SQLBORRAR = "DELETE FROM USERS WHERE DNI=?";
-	final String sqlInsert = "INSERT INTO USERS VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+	final String sqlInsert = "INSERT INTO USERS VALUES (?,?,?,?,?,?,?)";
 	final String sqlDinero = "SELECT BALANCE FROM USERS USERNAME = ? AND PASWORD = ?";
 	final String sqlNombre = "SELECT USERNAME FROM USERS WHERE DNI = ?";
 	final String SQL = "SELECT * FROM USERS WHERE USERNAME = ? AND PASWORD = ?";
 	final String sqlDNI = "SELECT DNI FROM USERS WHERE USERNAME = ? AND PASWORD = ?"; //Para usarlo como ancla del usuario en el resto de ventanas hasta que decida des loggearse
 	final String sqlObtenerStats = "SELECT TIMES_PLAYED, WINS, LOSSES, MAX_COMBO, TOTAL21S, TOTAL_LOSSES, TOTAL_WINS FROM USERS WHERE DNI = ?";
-	final String sqlActualizarStats = "UPDATE USERS SET TIMES_PLAYED = ?, WINS = ?, LOSSES = ?, MAX_COMBO = ?, TOTAL21S = ?, TOTAL_LOSSES = ?, TOTAL_WINS = ? WHERE DNI = ?";
+	final String sqlActualizarStats = "UPDATE USERS SET TIMES_PLAYED = ?, MAX_COMBO = ? WHERE DNI = ?";
 
 
 	// Para la conexi n utilizamos un fichero de configuaraci n, config que
@@ -62,6 +68,63 @@ public class ImplementacionBD implements UsuarioDAO{
 		} catch (Exception e) {
 			e.printStackTrace(); 
 		}
+	}
+	
+	public boolean insertarJuego(Played played, User usuario, Play_On_Table table) {
+		boolean bien = false;
+		this.openConnection();
+		try {
+			// Preparamos la sentencia stmt con la conexion y sentencia sql correspondiente
+			LocalDateTime ahora = LocalDateTime.now();
+
+	        DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+	        String fechaHora = ahora.format(formato);
+			
+			stmt = con.prepareStatement(sqlInsert);
+			stmt.setString(1, usuario.getDni());
+			stmt.setString(2, table.getId_table());
+			stmt.setDate(3, java.sql.Date.valueOf(fechaHora)); //Para pasar el String a LocalDate
+			stmt.setDouble(4, table.getBet());
+			stmt.setString(5, played.getResult().name());
+
+			if (stmt.executeUpdate() > 0) {
+				bien = true;
+			}
+			stmt.close();
+			con.close();
+		} catch (SQLException e) {
+			System.out.println("Error al verificar credenciales: " + e.getMessage());
+		}  
+		return bien;
+	}
+	
+	public boolean insertarMesa(Play_On_Table table) {
+		boolean bien = false;
+		this.openConnection();
+		try {
+			// Preparamos la sentencia stmt con la conexion y sentencia sql correspondiente
+			String caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+	        String resultado = "";
+	        Random random = new Random();
+
+	        for (int i = 0; i < 10; i++) {
+	            int indice = random.nextInt(caracteres.length());
+	            resultado += caracteres.charAt(indice);
+	        }
+			stmt = con.prepareStatement(sqlInsert);
+			stmt.setString(1, resultado);
+			stmt.setString(2,"BLACKJACK");
+			stmt.setDouble(3, table.getBet());
+
+			if (stmt.executeUpdate() > 0) {
+				bien = true;
+			}
+			stmt.close();
+			con.close();
+		} catch (SQLException e) {
+			System.out.println("Error al verificar credenciales: " + e.getMessage());
+		}  
+		return bien;
 	}
 
 	public boolean comprobarUsuario(User usuario) {
@@ -220,13 +283,8 @@ public class ImplementacionBD implements UsuarioDAO{
 	        stmt = con.prepareStatement(sqlActualizarStats);
 
 	        stmt.setInt(1, usuario.getVecesJugadas());
-	        stmt.setInt(2, usuario.getVecesGanadas());
-	        stmt.setInt(3, usuario.getVecesPerdidas());
-	        stmt.setInt(4, usuario.getMaxCombo());
-	        stmt.setInt(5, usuario.getTotal21s());
-	        stmt.setDouble(6, usuario.getTotalPerdido());
-	        stmt.setDouble(7, usuario.getTotalGanado());
-	        stmt.setString(8, usuario.getDni());
+	        stmt.setInt(2, usuario.getMaxCombo());
+	        stmt.setString(3, usuario.getDni());
 	        if (stmt.executeUpdate() > 0) {
 	            ok = true;
 	        }
@@ -250,13 +308,8 @@ public class ImplementacionBD implements UsuarioDAO{
 	        ResultSet rs = stmt.executeQuery();
 	        if (rs.next()) {
 	            // 🔹 Guardas los datos en el objeto usuario
-	            usuario.setVecesJugadas(rs.getInt("TIMES_PLAYED"));
-	            usuario.setVecesGanadas(rs.getInt("WINS"));
-	            usuario.setVecesPerdidas(rs.getInt("LOSSES"));
+	            usuario.setVecesJugadas(rs.getInt("TIMES_PLAYED"));    	
 	            usuario.setMaxCombo(rs.getInt("MAX_COMBO"));
-	            usuario.setTotal21s(rs.getInt("TOTAL21S"));
-	            usuario.setTotalPerdido(rs.getDouble("TOTAL_LOSSES"));
-	            usuario.setTotalGanado(rs.getDouble("TOTAL_WINS"));
 	            ok = true;
 	        }
 	        rs.close();

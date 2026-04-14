@@ -169,12 +169,7 @@ public class VentanaEstadisticas extends JFrame implements ActionListener {
 		
 		cont.obtenerStadisticas(elusuario);	
 		Dato1.setText(String.valueOf(elusuario.getVecesJugadas()));
-		Dato2.setText(String.valueOf(elusuario.getVecesGanadas()));
-		Dato3.setText(String.valueOf(elusuario.getVecesPerdidas()));
 		Dato4.setText(String.valueOf(elusuario.getMaxCombo()));
-		Dato5.setText(String.valueOf(elusuario.getTotal21s()));
-		Dato6.setText(String.valueOf(elusuario.getTotalPerdido()));
-		Dato7.setText(String.valueOf(elusuario.getTotalGanado()));
 		
 
 	}

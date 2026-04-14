@@ -278,6 +278,7 @@ public class VentanaBlackJack extends JDialog implements ActionListener {
 
 		if (e.getSource() == botonJugar) {
 			
+			cont.insertarJuego(null, elusuario, null);
 			obtnerDatosStats();
 
 			//Hacer que obtenga los datos de la base de datos
@@ -549,23 +550,13 @@ public class VentanaBlackJack extends JDialog implements ActionListener {
 	private void obtnerDatosStats() { 
 		cont.obtenerStadisticas(elusuario);
 		vecesJugadas = elusuario.getVecesJugadas();
-		vecesGanadas = elusuario.getVecesGanadas();
-		vecesPerdidas = elusuario.getVecesPerdidas();
 		maxCombo = elusuario.getMaxCombo();
-		total21s = elusuario.getTotal21s();
-		totalPerdido = elusuario.getTotalPerdido();
-		totalGanado = elusuario.getTotalGanado();	
 		
 	}
 	
 	private void actualizarDatosStats() {
 		elusuario.setVecesJugadas(vecesJugadas);
-		elusuario.setVecesGanadas(vecesGanadas);
-		elusuario.setVecesPerdidas(vecesPerdidas);
 		elusuario.setMaxCombo(maxCombo);
-		elusuario.setTotal21s(total21s);
-		elusuario.setTotalPerdido(totalPerdido);
-		elusuario.setTotalGanado(totalGanado);
 		cont.actualuizarStadisticas(elusuario);
 
 	}
