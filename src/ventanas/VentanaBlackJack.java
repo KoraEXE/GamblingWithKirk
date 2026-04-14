@@ -60,10 +60,11 @@ public class VentanaBlackJack extends JDialog implements ActionListener {
 	private JLabel dineroJugador;
 	private JLabel textoDIneroJugador;
 	private JLabel textoNombreJugador;
+	private JLabel TextNombreCrupier;
 	private LoginControlador cont;
 	private int racha = 0;
 	private int rachaReal = 0;
-	private boolean n21s = false;	
+	private boolean n21s = false;
 
 	//Stats para mostrar
 	private int vecesJugadas = 0; //realizado
@@ -236,6 +237,11 @@ public class VentanaBlackJack extends JDialog implements ActionListener {
 		TextoInfo.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		TextoInfo.setBounds(487, 276, 749, 98);
 		contentPanel.add(TextoInfo);
+		
+		TextNombreCrupier = new JLabel("Crupier:");
+		TextNombreCrupier.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		TextNombreCrupier.setBounds(1127, 53, 166, 28);
+		contentPanel.add(TextNombreCrupier);
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setSize(screenSize);
 		this.setLocation(0, 0);
@@ -495,10 +501,13 @@ public class VentanaBlackJack extends JDialog implements ActionListener {
 			if (n21s) {
 				elusuario.setBalance(elusuario.getBalance() + cantidad * (1.5 + 0.2 * racha + 0.50)); //aumenta si es por hacer 21
 				total21s ++;
-				totalGanado = totalGanado + cantidad;
+				int cantidadRedon = (int) Math.round(cantidad);
+				totalGanado = totalGanado + cantidadRedon;
 			} else {
 				elusuario.setBalance(elusuario.getBalance() + cantidad * (1.5 + 0.2 * racha));
-				totalGanado = totalGanado + cantidad;
+				
+				int cantidadRedon = (int) Math.round(cantidad);
+				totalGanado = totalGanado + cantidadRedon;
 			}
 			
 			rachaReal ++; //para la pagina web	
