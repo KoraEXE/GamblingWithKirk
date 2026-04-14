@@ -11,6 +11,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import controlador.LoginControlador;
+import modelo.Play_On_Table;
+import modelo.Played;
 import modelo.User;
 
 import javax.swing.JLabel;
@@ -28,12 +30,15 @@ public class Victoria extends JDialog implements ActionListener {
 	private JDialog VentanaBlackJack;
 	private LoginControlador cont;
 	private User elusuario;
+	private Play_On_Table table;
+	private Played played;
 
-	public Victoria(JDialog VentanaBlackJack,User elusuario) {
+	public Victoria(JDialog VentanaBlackJack,User elusuario, Play_On_Table table, Played played) {
 		super(VentanaBlackJack, "Victoria", true);
 		this.VentanaBlackJack = VentanaBlackJack;
 		this.elusuario = elusuario;
-
+		this.played = played;
+		this.table = table;
 		setAlwaysOnTop(true);
 		setUndecorated(true);
 		setIconImage(Toolkit.getDefaultToolkit().getImage("imagenes/miniIconoV2.png"));
@@ -79,7 +84,7 @@ public class Victoria extends JDialog implements ActionListener {
 		if(e.getSource()==PerderLaRacha) {
 			VentanaBlackJack.dispose();		
 			this.dispose();
-			SelecionJuego sJ=new SelecionJuego(cont, elusuario);
+			SelecionJuego sJ=new SelecionJuego(cont, elusuario, table, played);
 			sJ.setVisible(true);
 		}
 

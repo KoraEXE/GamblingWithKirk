@@ -2,7 +2,6 @@ package ventanas;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
-import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
@@ -22,7 +21,6 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
@@ -41,7 +39,6 @@ public class VentanaLogin extends JDialog implements ActionListener{
 	private LoginControlador cont;
 	private JComboBox<?> comboBox;
 	private JCheckBox mostrarContrasena;
-	private String dni;
 	private User elusuario;
 	private JTextField campoDNI;
 	private JTextField campoFechaNacimiento;

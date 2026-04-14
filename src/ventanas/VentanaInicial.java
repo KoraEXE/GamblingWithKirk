@@ -8,6 +8,8 @@ import javax.swing.border.EmptyBorder;
 
 import controlador.LoginControlador;
 import modelo.Carta;
+import modelo.Play_On_Table;
+import modelo.Played;
 import modelo.User;
 
 import javax.swing.JLabel;
@@ -46,6 +48,8 @@ public class VentanaInicial extends JFrame implements ActionListener{
 	private ImageIcon lblimagen;
 	private JLabel nube;
 	private User elusuario = new User();
+	private Play_On_Table table = new Play_On_Table();
+	private Played played = new Played();
 
 	public VentanaInicial(LoginControlador cont) {
 		
@@ -203,7 +207,7 @@ public class VentanaInicial extends JFrame implements ActionListener{
 					elusuario.setDni(dni);					
 					elusuario.setBalance(cont.obtenerDinero(elusuario));
 					Hablar.setText("Datos correctos");
-					SelecionJuego v2=new SelecionJuego(cont, elusuario);		
+					SelecionJuego v2=new SelecionJuego(cont, elusuario, table, played);		
 					v2.setVisible(true);
 					this.dispose();
 				} else {

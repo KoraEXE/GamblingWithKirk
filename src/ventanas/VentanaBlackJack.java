@@ -18,6 +18,8 @@ import controlador.LoginControlador;
 import juego.BlackJack;
 import modelo.Baraja;
 import modelo.Carta;
+import modelo.Play_On_Table;
+import modelo.Played;
 import modelo.User;
 
 import javax.swing.JLabel;
@@ -62,20 +64,21 @@ public class VentanaBlackJack extends JDialog implements ActionListener {
 	private JLabel textoNombreJugador;
 	private JLabel TextNombreCrupier;
 	private LoginControlador cont;
+	private Play_On_Table table;
+	private Played played;
 	private int racha = 0;
 	private int rachaReal = 0;
 	private boolean n21s = false;
 
 	//Stats para mostrar
 	private int vecesJugadas = 0; //realizado
-	private int vecesGanadas = 0;
-	private int vecesPerdidas = 0;
 	private int maxCombo = 0;
-	private int total21s = 0; //realizado
 	private double totalPerdido = 0;
 	private double totalGanado = 0;	
 
-	public VentanaBlackJack(LoginControlador cont, User elusuario) {
+	public VentanaBlackJack(LoginControlador cont, User elusuario, Play_On_Table table, Played played) {
+		this.table = table;
+		this.played = played;
 		cont = new LoginControlador();
 		this.cont = cont;
 		this.elusuario = elusuario;
@@ -112,7 +115,7 @@ public class VentanaBlackJack extends JDialog implements ActionListener {
 		contentPanel.add(textoNombreJugador);
 
 		Crupier2 = new JLabel("");
-		Crupier2.setIcon(new ImageIcon("C:\\Users\\1dami\\eclipse-workspace\\GamblingWithKirk\\imagenes\\trasera.jpg"));
+		Crupier2.setIcon(new ImageIcon("imagenes/trasera.jpg"));
 		Crupier2.setBounds(695, 115, 113, 151);
 		contentPanel.add(Crupier2);
 		Crupier2.setVisible(false);
@@ -125,28 +128,28 @@ public class VentanaBlackJack extends JDialog implements ActionListener {
 		sumaTotalReal.setVisible(false);
 
 		NoMostrar2 = new JLabel("");
-		NoMostrar2.setIcon(new ImageIcon("C:\\Users\\1dami\\eclipse-workspace\\GamblingWithKirk\\imagenes\\trasera.jpg"));
+		NoMostrar2.setIcon(new ImageIcon("imagenes/trasera.jpg"));
 		NoMostrar2.setBounds(878, 53, 113, 151);
 		contentPanel.add(NoMostrar2);
 
 		NuevoCrupier = new JLabel("");
-		NuevoCrupier.setIcon(new ImageIcon("C:\\Users\\1dami\\eclipse-workspace\\GamblingWithKirk\\imagenes\\trasera.jpg"));
+		NuevoCrupier.setIcon(new ImageIcon("imagenes/trasera.jpg"));
 		NuevoCrupier.setBounds(878, 53, 113, 151);
 		contentPanel.add(NuevoCrupier);
 
 		NoMostrar1 = new JLabel("");
-		NoMostrar1.setIcon(new ImageIcon("C:\\Users\\1dami\\eclipse-workspace\\GamblingWithKirk\\imagenes\\trasera.jpg"));
+		NoMostrar1.setIcon(new ImageIcon("imagenes/trasera.jpg"));
 		NoMostrar1.setBounds(643, 53, 113, 151);
 		contentPanel.add(NoMostrar1);
 
 		Carta3 = new JLabel("");
-		Carta3.setIcon(new ImageIcon("C:\\Users\\1dami\\eclipse-workspace\\GamblingWithKirk\\imagenes\\trasera.jpg"));
+		Carta3.setIcon(new ImageIcon("imagenes/trasera.jpg"));
 		Carta3.setBounds(742, 608, 113, 151);
 		contentPanel.add(Carta3);
 		Carta3.setVisible(false);
 
 		Carta2 = new JLabel("");
-		Carta2.setIcon(new ImageIcon("C:\\Users\\1dami\\eclipse-workspace\\GamblingWithKirk\\imagenes\\trasera.jpg"));
+		Carta2.setIcon(new ImageIcon("imagenes/trasera.jpg"));
 		Carta2.setBounds(695, 542, 113, 151);
 		contentPanel.add(Carta2);
 		Carta2.setVisible(false);
@@ -164,17 +167,17 @@ public class VentanaBlackJack extends JDialog implements ActionListener {
 		contentPanel.add(ComboIcon);
 
 		CartaNueva = new JLabel("");
-		CartaNueva.setIcon(new ImageIcon("C:\\Users\\1dami\\eclipse-workspace\\GamblingWithKirk\\imagenes\\trasera.jpg"));
+		CartaNueva.setIcon(new ImageIcon("imagenes/trasera.jpg"));
 		CartaNueva.setBounds(878, 466, 113, 151);
 		contentPanel.add(CartaNueva);
 
 		Carta1 = new JLabel("");
-		Carta1.setIcon(new ImageIcon("C:\\Users\\1dami\\eclipse-workspace\\GamblingWithKirk\\imagenes\\trasera.jpg"));
+		Carta1.setIcon(new ImageIcon("imagenes/trasera.jpg"));
 		Carta1.setBounds(643, 466, 113, 151);
 		contentPanel.add(Carta1);
 
 		Crupier1 = new JLabel("");
-		Crupier1.setIcon(new ImageIcon("C:\\Users\\1dami\\eclipse-workspace\\GamblingWithKirk\\imagenes\\trasera.jpg"));
+		Crupier1.setIcon(new ImageIcon("imagenes/trasera.jpg"));
 		Crupier1.setBounds(643, 53, 113, 151);
 		contentPanel.add(Crupier1);
 
@@ -248,8 +251,6 @@ public class VentanaBlackJack extends JDialog implements ActionListener {
 		botonJugar.addActionListener(this);
 		BotonPedir.addActionListener(this);
 		BotonParar.addActionListener(this);
-
-
 
 	}
 
@@ -467,14 +468,14 @@ public class VentanaBlackJack extends JDialog implements ActionListener {
 		if (resultado.equals("GANAR")) {
 			
 			TextoInfo.setText("¡Has ganado!");
-			Victoria victoria = new Victoria(this, elusuario);
+			Victoria victoria = new Victoria(this, elusuario, table, played);
 			victoria.setLocation(350, 400); //posición
 			victoria.setVisible(true);
 
 		} else if (resultado.equals("PERDER")) {
 
 			TextoInfo.setText("¡Has perdido!");
-			Derrota derrota = new Derrota(this, elusuario);
+			Derrota derrota = new Derrota(this, elusuario, table, played);
 			derrota.setLocation(350, 400); //posición
 			derrota.setVisible(true);
 
@@ -494,14 +495,14 @@ public class VentanaBlackJack extends JDialog implements ActionListener {
 		
 		if (resultado.equals("GANAR")) {
 		} else if (resultado.equals("PERDER")) {
-			vecesPerdidas ++;
+			
 		}
 			
 		if (resultado.equals("GANAR")) {
 
 			if (n21s) {
 				elusuario.setBalance(elusuario.getBalance() + cantidad * (1.5 + 0.2 * racha + 0.50)); //aumenta si es por hacer 21
-				total21s ++;
+		
 				int cantidadRedon = (int) Math.round(cantidad);
 				totalGanado = totalGanado + cantidadRedon;
 			} else {
@@ -519,12 +520,10 @@ public class VentanaBlackJack extends JDialog implements ActionListener {
 			}
 			
 			ComboIcon.setText(String.valueOf(rachaReal));
-		} else if (resultado.equals("EMPATE")) {		
-			if (n21s) {
+		} else if (resultado.equals("EMPATE")) { 			
 				elusuario.setBalance(elusuario.getBalance() + cantidad);
-			} else {
-				elusuario.setBalance(elusuario.getBalance() + cantidad);
-			}
+				cont.insertarJuego(null, elusuario, table);
+				
 			ComboIcon.setText(String.valueOf(rachaReal));
 		} else if (resultado.equals("PERDER")) {
 		

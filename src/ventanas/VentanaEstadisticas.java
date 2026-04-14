@@ -10,6 +10,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import controlador.LoginControlador;
+import modelo.Play_On_Table;
+import modelo.Played;
 import modelo.User;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -41,11 +43,15 @@ public class VentanaEstadisticas extends JFrame implements ActionListener {
 	private JLabel Dato6;
 	private JLabel Dato7;
 	private JButton btnVolver;
+	private Play_On_Table table;
+	private Played played;
 	
 	
-	public VentanaEstadisticas(LoginControlador cont, User elusuario) {
+	public VentanaEstadisticas(LoginControlador cont, User elusuario, Play_On_Table table, Played played) {
 		cont = new LoginControlador();
 		this.cont = cont;
+		this.table = table;
+		this.table = table;
 		setIconImage(Toolkit.getDefaultToolkit().getImage("imagenes/R.png"));
 		this.elusuario=elusuario;
 		setTitle("Stats");
@@ -179,7 +185,7 @@ public class VentanaEstadisticas extends JFrame implements ActionListener {
 		// TODO Auto-generated method stub
 		if(e.getSource()==btnVolver) {
 			this.dispose();
-			SelecionJuego sJ=new SelecionJuego(cont, elusuario);
+			SelecionJuego sJ=new SelecionJuego(cont, elusuario, table, played);
 			sJ.setVisible(true);
 		}
 		

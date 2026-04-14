@@ -10,6 +10,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import controlador.LoginControlador;
+import modelo.Play_On_Table;
+import modelo.Played;
 import modelo.User;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -45,9 +47,13 @@ public class VentanaRuletaRusa extends JFrame implements ActionListener {
 	private JLabel lblFive;
 	private JLabel lblSix;
 	private int respuesta = 0;
+	private Play_On_Table table;
+	private Played played;
 
 
-	public VentanaRuletaRusa(LoginControlador cont, User elusuario) {
+	public VentanaRuletaRusa(LoginControlador cont, User elusuario, Play_On_Table table, Played played) {
+		this.table = table;
+		this.played = played;
 		cont = new LoginControlador();
 		this.cont = cont;
 		setIconImage(Toolkit.getDefaultToolkit().getImage("imagenes/R.png"));
@@ -273,7 +279,7 @@ public class VentanaRuletaRusa extends JFrame implements ActionListener {
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						btnRevolver.setIcon(new ImageIcon("imagenes/revolverLast.jpg"));
-						SelecionJuego sJ=new SelecionJuego(cont, elusuario);
+						SelecionJuego sJ=new SelecionJuego(cont, elusuario, table, played);
 						sJ.setVisible(true);
 						accion2();
 					}				

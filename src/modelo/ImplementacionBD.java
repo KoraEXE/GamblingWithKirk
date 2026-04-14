@@ -37,7 +37,7 @@ public class ImplementacionBD implements UsuarioDAO{
 	// Sentencias SQL Fucionales
 	
 	final String sqlInsPlayed = "INSERT INTO PLAYED VALUES (?,?,?,?,?,?,?)";
-	final String sqlInsTablee = "INSERT INTO TABLEE VALUES (?,?,?)";
+	final String sqlInsTablee = "INSERT INTO TABLEE VALUES (?,?)";
 
 	final String SQLBORRAR = "DELETE FROM USERS WHERE DNI=?";
 	final String sqlInsert = "INSERT INTO USERS VALUES (?,?,?,?,?,?,?)";
@@ -80,12 +80,11 @@ public class ImplementacionBD implements UsuarioDAO{
 	        DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 	        String fechaHora = ahora.format(formato);
 			
-			stmt = con.prepareStatement(sqlInsert);
+			stmt = con.prepareStatement(sqlInsPlayed);
 			stmt.setString(1, usuario.getDni());
 			stmt.setString(2, table.getId_table());
 			stmt.setDate(3, java.sql.Date.valueOf(fechaHora)); //Para pasar el String a LocalDate
-			stmt.setDouble(4, table.getBet());
-			stmt.setString(5, played.getResult().name());
+			stmt.setString(4, played.getResult().name());
 
 			if (stmt.executeUpdate() > 0) {
 				bien = true;
@@ -111,10 +110,9 @@ public class ImplementacionBD implements UsuarioDAO{
 	            int indice = random.nextInt(caracteres.length());
 	            resultado += caracteres.charAt(indice);
 	        }
-			stmt = con.prepareStatement(sqlInsert);
-			stmt.setString(1, resultado);
+			stmt = con.prepareStatement(sqlInsTablee);
+			stmt.setString(1, resultado.toUpperCase());
 			stmt.setString(2,"BLACKJACK");
-			stmt.setDouble(3, table.getBet());
 
 			if (stmt.executeUpdate() > 0) {
 				bien = true;
@@ -220,12 +218,7 @@ public class ImplementacionBD implements UsuarioDAO{
 			stmt.setDate(4, java.sql.Date.valueOf(usuario.getDate_of_birth())); //Para pasar el Date a LocalDate
 			stmt.setInt(5, 0);
 			stmt.setInt(6, 0);
-			stmt.setInt(7, 0);
-			stmt.setInt(8, 0);
-			stmt.setInt(9, 0);
-			stmt.setDouble(10, 0);
-			stmt.setDouble(11, 0);
-			stmt.setDouble(12, usuario.getBalance());
+			stmt.setDouble(7, usuario.getBalance());
 
 			if (stmt.executeUpdate() > 0) {
 				bien = true;

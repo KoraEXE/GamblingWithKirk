@@ -11,6 +11,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import controlador.LoginControlador;
+import modelo.Play_On_Table;
+import modelo.Played;
 import modelo.User;
 
 import javax.swing.JLabel;
@@ -28,14 +30,14 @@ public class Derrota extends JDialog implements ActionListener {
 	private JDialog VentanaBlackJack;
 	private LoginControlador cont;
 	private User elusuario;
+	private Play_On_Table table;
+	private Played played;
 
-
-
-	public Derrota(JDialog VentanaBlackJack, User elusuario) {
+	public Derrota(JDialog VentanaBlackJack, User elusuario, Play_On_Table table, Played played) {
 		super(VentanaBlackJack, "Derrota", true);
 		this.VentanaBlackJack = VentanaBlackJack;
 		this.elusuario = elusuario;
-
+		this.table = table;
 		setAlwaysOnTop(true);
 		setUndecorated(true);
 		setIconImage(Toolkit.getDefaultToolkit().getImage("imagenes/miniIconoV2.png"));
@@ -87,12 +89,12 @@ public class Derrota extends JDialog implements ActionListener {
 			if (elusuario.getBalance() == 0) {
 				VentanaBlackJack.dispose();
 				this.dispose();
-				VentanaRuletaRusa vI=new VentanaRuletaRusa(cont, elusuario);
+				VentanaRuletaRusa vI=new VentanaRuletaRusa(cont, elusuario, table, played);
 				vI.setVisible(true);	
 			} else {
 				VentanaBlackJack.dispose();
 				this.dispose();
-				SelecionJuego sJ=new SelecionJuego(cont, elusuario);
+				SelecionJuego sJ=new SelecionJuego(cont, elusuario, table, played);
 				sJ.setVisible(true);
 			}
 		}
@@ -100,7 +102,7 @@ public class Derrota extends JDialog implements ActionListener {
 
 			if (elusuario.getBalance() == 0) {
 					VentanaBlackJack.dispose();
-					VentanaRuletaRusa vI=new VentanaRuletaRusa(cont, elusuario);
+					VentanaRuletaRusa vI=new VentanaRuletaRusa(cont, elusuario, table, played);
 					vI.setVisible(true);
 					this.dispose();
 			} else {
