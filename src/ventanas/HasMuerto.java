@@ -61,14 +61,11 @@ public class HasMuerto extends JDialog implements ActionListener {
 
 	}
 
-
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
 		if(e.getSource()==SeguirJugando) {
 			cont.borrarUsuario(elusuario);
-			VentanaInicial vI=new VentanaInicial(cont);
-			vI.setVisible(true);
 			this.dispose();		
 		}
 		

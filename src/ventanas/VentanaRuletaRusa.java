@@ -268,9 +268,6 @@ public class VentanaRuletaRusa extends JFrame implements ActionListener {
 				timer.start();
 
 			} else {
-				elusuario.setBalance(100);
-				cont.actualuizarStadisticas(elusuario);
-				JOptionPane.showMessageDialog(null, "Mira tu dinero");
 				btnRevolver.setIcon(new ImageIcon("imagenes/revolverGif.gif"));
 				Timer timer = new Timer(260, new ActionListener() {
 					@Override
@@ -278,7 +275,7 @@ public class VentanaRuletaRusa extends JFrame implements ActionListener {
 						btnRevolver.setIcon(new ImageIcon("imagenes/revolverLast.jpg"));
 						SelecionJuego sJ=new SelecionJuego(cont, elusuario);
 						sJ.setVisible(true);
-						accion();
+						accion2();
 					}				
 				});	
 				timer.setRepeats(false);
@@ -291,5 +288,13 @@ public class VentanaRuletaRusa extends JFrame implements ActionListener {
 	
 	private void accion() {
 		this.dispose();	
+	}
+	
+	private void accion2() {
+		this.dispose();	
+		elusuario.setBalance(100);
+		cont.actualizarDinero(elusuario);
+		JOptionPane.showMessageDialog(null, "Mira tu dinero");
+		
 	}
 }
