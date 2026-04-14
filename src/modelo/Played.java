@@ -34,37 +34,25 @@ public class Played{
 		return dni;
 	}
 
-
-
 	public void setDni(String dni) {
 		this.dni = dni;
 	}
-
-
 
 	public String getIdMesa() {
 		return idMesa;
 	}
 
-
-
 	public void setIdMesa(String idMesa) {
 		this.idMesa = idMesa;
 	}
-
-
 
 	public int getApuestaEnJuego() {
 		return apuestaEnJuego;
 	}
 
-
-
 	public void setApuestaEnJuego(int apuestaEnJuego) {
 		this.apuestaEnJuego = apuestaEnJuego;
 	}
-
-
 
 	public LocalDate getDate() {
 		return date;
@@ -78,12 +66,10 @@ public class Played{
 	public void setResult(Result result) {
 		Result = result;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "Played [date=" + date + ", Result=" + Result + "]";
+		return "Played [dni=" + dni + ", idMesa=" + idMesa + ", apuestaEnJuego=" + apuestaEnJuego + ", Result=" + Result
+				+ ", date=" + date + "]";
 	}
-
-
-
 }

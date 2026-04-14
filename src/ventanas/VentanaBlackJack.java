@@ -20,6 +20,7 @@ import modelo.Baraja;
 import modelo.Carta;
 import modelo.Play_On_Table;
 import modelo.Played;
+import modelo.Result;
 import modelo.User;
 
 import javax.swing.JLabel;
@@ -73,13 +74,12 @@ public class VentanaBlackJack extends JDialog implements ActionListener {
 	//Stats para mostrar
 	private int vecesJugadas = 0; //realizado
 	private int maxCombo = 0;
-	private double totalPerdido = 0;
-	private double totalGanado = 0;	
 
 	public VentanaBlackJack(LoginControlador cont, User elusuario, Play_On_Table table, Played played) {
+		played = new Played();
+		cont = new LoginControlador();
 		this.table = table;
 		this.played = played;
-		cont = new LoginControlador();
 		this.cont = cont;
 		this.elusuario = elusuario;
 		setBounds(100, 100, 450, 300);
@@ -279,7 +279,6 @@ public class VentanaBlackJack extends JDialog implements ActionListener {
 
 		if (e.getSource() == botonJugar) {
 			
-			cont.insertarJuego(null, elusuario, null);
 			obtnerDatosStats();
 
 			//Hacer que obtenga los datos de la base de datos
@@ -502,15 +501,17 @@ public class VentanaBlackJack extends JDialog implements ActionListener {
 
 			if (n21s) {
 				elusuario.setBalance(elusuario.getBalance() + cantidad * (1.5 + 0.2 * racha + 0.50)); //aumenta si es por hacer 21
-		
 				int cantidadRedon = (int) Math.round(cantidad);
-				totalGanado = totalGanado + cantidadRedon;
+				played.setApuestaEnJuego(cantidadRedon);
 			} else {
 				elusuario.setBalance(elusuario.getBalance() + cantidad * (1.5 + 0.2 * racha));
 				
 				int cantidadRedon = (int) Math.round(cantidad);
-				totalGanado = totalGanado + cantidadRedon;
+				played.setApuestaEnJuego(cantidadRedon);
 			}
+			
+			played.setResult(Result.WIN);
+			cont.insertarJuego(played, elusuario, table);
 			
 			rachaReal ++; //para la pagina web	
 			maxCombo = rachaReal;
@@ -522,22 +523,20 @@ public class VentanaBlackJack extends JDialog implements ActionListener {
 			ComboIcon.setText(String.valueOf(rachaReal));
 		} else if (resultado.equals("EMPATE")) { 			
 				elusuario.setBalance(elusuario.getBalance() + cantidad);
-				cont.insertarJuego(null, elusuario, table);
+				played.setResult(Result.DRAW);
+				cont.insertarJuego(played, elusuario, table);
 				
 			ComboIcon.setText(String.valueOf(rachaReal));
-		} else if (resultado.equals("PERDER")) {
-		
-			//Hacer que obtenga los datos de la base de datos
-
-			totalPerdido = totalPerdido - cantidad ;
-
-			//añadir a la base de datos
+		} else if (resultado.equals("PERDER")) {	
+			played.setApuestaEnJuego(-cantidad);
 			racha = 0;
 			rachaReal = 0;
 			ComboIcon.setText(String.valueOf(racha));
 			ComboIcon.setText(String.valueOf(rachaReal));
+			played.setResult(Result.LOSE);
+			cont.insertarJuego(played, elusuario, table);
 			
-			
+			System.out.println();
 		}
 
 		dineroJugador.setText(String.valueOf(elusuario.getBalance()));

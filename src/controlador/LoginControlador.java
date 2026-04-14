@@ -1,5 +1,7 @@
 package controlador;
 
+import java.util.ArrayList;
+
 import modelo.ImplementacionBD;
 import modelo.Play_On_Table;
 import modelo.Played;
@@ -59,4 +61,9 @@ public class LoginControlador {
 	public boolean insertarMesa (Play_On_Table table) {
 		return dao.insertarMesa(table);
 	}
+	
+	public ArrayList<Played> obtenerHistorial (User usuario) {
+		return dao.obtenerHistorial(usuario);
+	}
+	
 }

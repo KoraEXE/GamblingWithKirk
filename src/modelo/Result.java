@@ -1,5 +1,5 @@
 package modelo;
 
 public enum Result {
-	WIN,LOSE;
+	WIN,LOSE,DRAW;
 }

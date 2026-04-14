@@ -193,7 +193,7 @@ public class VentanaLogin extends JDialog implements ActionListener{
 
 			if (campoDNI.equals("") || campoUsuario.equals("") || comboBox.getSelectedIndex() == 0  || campoContrasena.equals("") || campoFechaNacimiento.equals("")) {
 				TextRespuesta.setText("Rellena todos los campos");
-			} else if (campoDNI.getText().matches("^[0-9]{8}[A-Z]$")) {
+			} else if (campoDNI.getText().matches("^[0-9]{8}[A-Z]$") || campoDNI.getText().matches("^[0-9]{8}[a-z]$")) {
 				LocalDate fechas;
 				String fecha = campoFechaNacimiento.getText();
 
@@ -238,7 +238,7 @@ public class VentanaLogin extends JDialog implements ActionListener{
 					cantidad = 1000;
 				}
 				
-				elusuario.setDni(campoDNI.getText());
+				elusuario.setDni(campoDNI.getText().toUpperCase());
 				elusuario.setName(campoUsuario.getText());
 				elusuario.setPassword(String.valueOf(campoContrasena.getPassword()));
 				elusuario.setBalance(cantidad = 1000);

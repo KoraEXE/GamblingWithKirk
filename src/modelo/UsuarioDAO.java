@@ -15,4 +15,6 @@ public interface UsuarioDAO {
 	public boolean actualuizarStadisticas(User usuario);
 	public boolean insertarJuego(Played played, User usuario, Play_On_Table table);
 	public boolean insertarMesa(Play_On_Table table);
+	public ArrayList<Played> obtenerHistorial(User usuario);
+	
 }

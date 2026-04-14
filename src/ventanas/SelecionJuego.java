@@ -5,6 +5,8 @@ import java.awt.FlowLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
+
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
@@ -40,6 +42,8 @@ public class SelecionJuego extends JDialog implements ActionListener {
 	private Played played;
 
 	public SelecionJuego(LoginControlador controlador, User elusuario, Play_On_Table table, Played played) {
+		
+		cont = new LoginControlador();
 		this.played = played;
 		this.table=table;
 		this.cont=controlador;
@@ -147,6 +151,7 @@ public class SelecionJuego extends JDialog implements ActionListener {
 		}
 		
 		if (e.getSource()==blackJack) {
+			generadorDeCodigo();
 			cont.insertarMesa(table);
 			VentanaBlackJack vI=new VentanaBlackJack(cont, elusuario, table, played);
 			vI.setVisible(true);
@@ -174,5 +179,18 @@ public class SelecionJuego extends JDialog implements ActionListener {
 		}
 		
 	}
+	
+	public void generadorDeCodigo() {
+		String caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        String resultado = "";
+        Random random = new Random();
+
+        for (int i = 0; i < 10; i++) {
+            int indice = random.nextInt(caracteres.length());
+            resultado += caracteres.charAt(indice);
+        }
+        table.setId_table(resultado.toUpperCase());
+	}
+	
 }
 
