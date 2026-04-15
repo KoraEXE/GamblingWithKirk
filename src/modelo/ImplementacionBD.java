@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -73,13 +74,14 @@ public class ImplementacionBD implements UsuarioDAO{
 	}
 	
 	public boolean insertarJuego(Played played, User usuario, Play_On_Table table) {
+		
 		boolean bien = false;
 		this.openConnection();
 		try {
 			stmt = con.prepareStatement(sqlInsPlayed);
 			stmt.setString(1, usuario.getDni());
 			stmt.setString(2, table.getId_table());
-			stmt.setDate(3, java.sql.Date.valueOf(LocalDateTime.now().toLocalDate())); //Esto es para pasar el Date a LocalDate
+			stmt.setTimestamp(3, new java.sql.Timestamp(System.currentTimeMillis()));
 			stmt.setInt(4, played.getApuestaEnJuego());
 			stmt.setString(5, played.getResult().name());
 
@@ -312,7 +314,7 @@ public class ImplementacionBD implements UsuarioDAO{
 	        while (rs.next()) {
 	            Played p = new Played();
 
-	            p.setDate(rs.getDate("GAME_DATE").toLocalDate());
+	            p.setDate(rs.getTimestamp("GAME_DATE"));
 	            p.setApuestaEnJuego(rs.getInt("BET"));
 	            p.setResult(Result.valueOf(rs.getString("RESULT")));
 

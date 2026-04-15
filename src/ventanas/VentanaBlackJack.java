@@ -512,6 +512,7 @@ public class VentanaBlackJack extends JDialog implements ActionListener {
 			}
 			
 			played.setResult(Result.WIN);
+			played.getIdMesa();
 			cont.insertarJuego(played, elusuario, table);
 			
 			rachaReal ++; //para la pagina web	
@@ -524,17 +525,22 @@ public class VentanaBlackJack extends JDialog implements ActionListener {
 			ComboIcon.setText(String.valueOf(rachaReal));
 		} else if (resultado.equals("EMPATE")) { 			
 				elusuario.setBalance(elusuario.getBalance() + cantidad);
+				
+				played.setApuestaEnJuego(cantidad);
 				played.setResult(Result.DRAW);
+				played.getIdMesa();
 				cont.insertarJuego(played, elusuario, table);
 				
 			ComboIcon.setText(String.valueOf(rachaReal));
 		} else if (resultado.equals("PERDER")) {	
-			played.setApuestaEnJuego(-cantidad);
 			racha = 0;
 			rachaReal = 0;
 			ComboIcon.setText(String.valueOf(racha));
 			ComboIcon.setText(String.valueOf(rachaReal));
+			
+			played.setApuestaEnJuego(cantidad);
 			played.setResult(Result.LOSE);
+			played.getIdMesa();
 			cont.insertarJuego(played, elusuario, table);
 			
 			System.out.println();

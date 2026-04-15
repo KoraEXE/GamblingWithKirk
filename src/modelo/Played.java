@@ -1,15 +1,15 @@
 package modelo;
 
-import java.time.LocalDate;
+import java.sql.Timestamp;
 
 public class Played{
 	private String dni;
 	private String idMesa;
 	private int apuestaEnJuego;
 	private Result Result;
-	private LocalDate date;
+	private Timestamp date;
 	
-	public Played(String dni, String idMesa, int apuestaEnJuego, modelo.Result result, LocalDate date) {
+	public Played(String dni, String idMesa, int apuestaEnJuego, modelo.Result result, Timestamp date) {
 		super();
 		this.dni = dni;
 		this.idMesa = idMesa;
@@ -18,7 +18,7 @@ public class Played{
 		this.date = date;
 	}
 	
-	public Played(String dni, String idMesa, int apuestaEnJuego, LocalDate date) {
+	public Played(String dni, String idMesa, int apuestaEnJuego, Timestamp date) {
 		super();
 		this.dni = dni;
 		this.idMesa = idMesa;
@@ -54,12 +54,14 @@ public class Played{
 		this.apuestaEnJuego = apuestaEnJuego;
 	}
 
-	public LocalDate getDate() {
+	public Timestamp getDate() {
 		return date;
 	}
-	public void setDate(LocalDate date) {
+
+	public void setDate(Timestamp date) {	
 		this.date = date;
 	}
+
 	public Result getResult() {
 		return Result;
 	}
