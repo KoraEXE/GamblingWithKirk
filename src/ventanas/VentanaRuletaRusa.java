@@ -248,6 +248,7 @@ public class VentanaRuletaRusa extends JFrame implements ActionListener {
 			lblDato7.setBounds(626, 241, 267, 25);
 			btnRevolver.setEnabled(true);
 			respuesta = 6;
+			
 		}
 		
 
