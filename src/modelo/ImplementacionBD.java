@@ -388,11 +388,4 @@ public class ImplementacionBD implements UsuarioDAO{
 
 	    return lista;
 	}
-
-	@Override
-	public ArrayList<String> mostrarUsuario(User usuario) {
-		// TODO Auto-generated method stub
-
-		return null;
-	}
 }
