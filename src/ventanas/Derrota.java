@@ -35,6 +35,7 @@ public class Derrota extends JDialog implements ActionListener {
 
 	public Derrota(JDialog VentanaBlackJack, User elusuario, Play_On_Table table, Played played) {
 		super(VentanaBlackJack, "Derrota", true);
+		
 		this.VentanaBlackJack = VentanaBlackJack;
 		this.elusuario = elusuario;
 		this.table = table;

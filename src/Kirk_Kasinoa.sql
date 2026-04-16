@@ -56,8 +56,8 @@ INSERT INTO DEALER VALUES
 ('DEAL1234AA','Artiz',1000);
 
 INSERT INTO PLAYED VALUES
-('18449847Y','MESA45678B','2026-03-13',5000,'WIN'),
-('18444447Y','MESA45678A','2026-03-13',3500,'LOSE');
+('18449847Y','MESA45678B','2026-03-13 00:00:00',5000,'WIN'),
+('18444447Y','MESA45678A','2026-03-13 00:00:00',3500,'LOSE');
 
 INSERT INTO HAVE VALUES
 ('MESA45678B','DEAL1234BB'),
@@ -67,16 +67,16 @@ DELIMITER
 CREATE DEFINER=`root`@`localhost` PROCEDURE `add_dealers`(IN p_id_dealer VARCHAR(10), IN p_dealer_name VARCHAR(20), IN p_balance DECIMAL)
 BEGIN
 
-    INSERT INTO DEALER (
-        ID_DEALER, DEALER_NAME, BALANCE
-    )
-    VALUES (
-        p_id, p_name, p_balance
-    );
+	INSERT INTO DEALER (
+		ID_DEALER, DEALER_NAME, BALANCE
+	)
+	VALUES (
+		p_id_dealer, p_dealer_name, p_balance
+	);
 
 END //
 
-DELIMITER //
+DELIMITER ;
 
 DELIMITER //
 CREATE DEFINER=`root`@`localhost` PROCEDURE `add_users`(IN p_dni VARCHAR(10), IN p_username VARCHAR(20), IN p_password VARCHAR(10), IN p_birth DATE,IN p_times_played INT, IN p_maxcombo INT, IN p_balance DECIMAL(10,2))
@@ -89,11 +89,11 @@ BEGIN
         p_dni, p_username, p_password, p_birth, p_times_played, p_maxcombo, p_balance
     );
 
-END
+END //
 DELIMITER ;
 
 DELIMITER //
-CREATE DEFINER=`root`@`localhost` PROCEDURE `register_game`(IN p_dni VARCHAR(10), IN p_table VARCHAR(10), IN p_date TIMESTAMP, IN p_bet INT, IN p_result VARCHAR(10) )
+CREATE DEFINER=`root`@`localhost` PROCEDURE `register_game`(IN p_dni VARCHAR(10), IN p_table VARCHAR(10), IN p_date TIMESTAMP, IN p_bet INT, IN p_result ENUM('WIN','LOSE','DRAW') )
 BEGIN
 
 	INSERT INTO PLAYED (DNI, ID_TABLE,GAME_DATE, BET, RESULT)
@@ -103,12 +103,18 @@ BEGIN
     SET TIMES_PLAYED = TIMES_PLAYED + 1
     WHERE DNI = p_dni;
 
-	IF p_result = "WIN" THEN 
+	IF p_result = 'WIN' THEN 
 		UPDATE USERS
-        SET BALANCE = BALANCE + p_bet
-        WHERE DNI = p_dni;
+		SET BALANCE = BALANCE + p_bet
+		WHERE DNI = p_dni;
+
+	ELSEIF p_result = 'LOSE' THEN
+		UPDATE USERS
+		SET BALANCE = BALANCE - p_bet
+		WHERE DNI = p_dni;
+
 	END IF;
-END
+END //
 
 DELIMITER ;
 
@@ -119,5 +125,5 @@ BEGIN
     INSERT INTO HAVE (ID_TABLE, ID_DEALER)
     VALUES (p_table, p_dealer);
     
-END
+END //
 DELIMITER ;
