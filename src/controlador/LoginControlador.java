@@ -74,4 +74,8 @@ public class LoginControlador {
 	public boolean obtenerID_DEALER (Dealer dealer) {
 		return dao.obtenerID_DEALER(dealer);
 	}
+	
+	public boolean insertarDealer (Dealer dealer) {
+		return dao.insertarDealer(dealer);
+	}
 }

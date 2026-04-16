@@ -18,4 +18,5 @@ public interface UsuarioDAO {
 	public ArrayList<Played> obtenerHistorial(User usuario);
 	public boolean repetirDNI(User usuario);
 	public boolean obtenerID_DEALER(Dealer dealer);
+	public boolean insertarDealer(Dealer dealer);
 }

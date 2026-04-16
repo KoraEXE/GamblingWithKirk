@@ -1,13 +1,10 @@
 package ventanas;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import controlador.LoginControlador;
-import modelo.Carta;
 import modelo.Dealer;
 import modelo.Play_On_Table;
 import modelo.Played;
@@ -29,8 +26,6 @@ import javax.swing.JPasswordField;
 import javax.swing.JCheckBox; 
 
 //Prueba
-import java.awt.Dimension;
-import java.awt.Toolkit;
 import java.awt.Color;
 
 public class VentanaInicial extends JFrame implements ActionListener{

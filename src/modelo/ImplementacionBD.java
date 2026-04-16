@@ -1,15 +1,12 @@
 package modelo;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Random;
 import java.util.ResourceBundle;
 
 public class ImplementacionBD implements UsuarioDAO{
@@ -74,6 +71,26 @@ public class ImplementacionBD implements UsuarioDAO{
 		} catch (Exception e) {
 			e.printStackTrace(); 
 		}
+	}
+	
+	public boolean insertarDealer(Dealer dealer) {
+		boolean bien = false;
+		this.openConnection();
+	    try {
+	        CallableStatement stmt = con.prepareCall("{CALL add_dealers(?, ?, ?)}");
+
+	        stmt.setString(1, dealer.getID_Dealer());
+	        stmt.setString(2, dealer.getName());
+	        stmt.setDouble(3, 1000.00);
+
+	        if (stmt.executeUpdate() > 0) {
+				bien = true;
+			}
+
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	    return bien;
 	}
 	
 	public boolean insertarJuego(Played played, User usuario, Play_On_Table table) {

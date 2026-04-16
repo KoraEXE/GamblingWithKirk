@@ -113,7 +113,6 @@ public class Baraja implements Serializable {
 	}
 
 	public void cargarBaraja(ArrayList<Carta> baraja) {
-		boolean cargada = false;
 		baraja.clear(); //Limpiar el arraylist (boom)
 
 		try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(RUTA))) {

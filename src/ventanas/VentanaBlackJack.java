@@ -2,7 +2,6 @@ package ventanas;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,7 +15,6 @@ import javax.swing.border.EmptyBorder;
 
 import controlador.LoginControlador;
 import juego.BlackJack;
-import modelo.Baraja;
 import modelo.Carta;
 import modelo.Play_On_Table;
 import modelo.Played;
@@ -58,7 +56,6 @@ public class VentanaBlackJack extends JDialog implements ActionListener {
 	private JLabel TextoInfo;
 	private JLabel sumaTotalReal;
 	private JLabel Crupier2;
-	private BlackJack juego;
 	private User elusuario;
 	private JLabel nombreJugador;
 	private JLabel dineroJugador;

@@ -1,17 +1,9 @@
 package ventanas;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 
 import controlador.LoginControlador;
-import modelo.Carta;
 import modelo.Dealer;
-import modelo.Play_On_Table;
-import modelo.Played;
-import modelo.User;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -21,19 +13,12 @@ import java.awt.Font;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
 import javax.swing.JTextField;
-import javax.swing.JPasswordField;
-import javax.swing.JCheckBox;
 import javax.swing.JDialog;
 
 //Prueba
-import java.awt.Dimension;
-import java.awt.Toolkit;
-import java.awt.BorderLayout;
 import java.awt.Color;
 
 public class VentanaAdmin extends JDialog implements ActionListener{
@@ -51,6 +36,7 @@ public class VentanaAdmin extends JDialog implements ActionListener{
 	private JLabel textNombreDealer;
 	private JTextField campoNombreDealer;
 	private Dealer dealer;
+	private JButton btnVolver;
 
 	public VentanaAdmin(LoginControlador cont, Dealer dealer) {
 
@@ -62,10 +48,16 @@ public class VentanaAdmin extends JDialog implements ActionListener{
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		setContentPane(contentPane);
-		getContentPane().setLayout(new BorderLayout());
 		this.setSize(1536, 864);
 		this.setLocation(0, 0);
 		contentPane.setLayout(null);
+		contentPane.setLayout(null);
+		
+		btnVolver = new JButton("Back");
+		btnVolver.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnVolver.setBounds(1042, 458, 210, 60);
+		contentPane.add(btnVolver);
+		
 
 		JLabel lblAdminText = new JLabel("Admin");
 		lblAdminText.setForeground(new Color(255, 255, 255));
@@ -105,6 +97,7 @@ public class VentanaAdmin extends JDialog implements ActionListener{
 		btnAccion.setBounds(386, 450, 349, 60);
 		contentPane.add(btnAccion);
 		btnAccion.setVisible(false);
+		btnAccion.addActionListener(this);
 		
 		textDealerId = new JLabel("New Dealer ID:");
 		textDealerId.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -162,19 +155,35 @@ public class VentanaAdmin extends JDialog implements ActionListener{
 			}
 		}	
 		
+		if (e.getSource() == btnVolver) {
+			VentanaInicial vI=new VentanaInicial(cont);
+			vI.setVisible(true);
+			this.dispose();
+		}
+		
 		if (e.getSource() == btnAccion) {
 			String id = "";
 			String nombre = "";
-			if (campoIdDealer.getText().matches("^[0-9]{4}[A-Z]{2}")) {
+			if (campoIdDealer.getText().matches("^[0-9]{4}[A-Z]{2}") || campoIdDealer.getText().matches("^[0-9]{4}[a-z]{2}") ) {
 				id = "DEAL" + campoIdDealer.getText().toUpperCase();
+			} else {
+				JOptionPane.showMessageDialog(null, "EL 'DEAL' se pone automaticamente. Formato correcto 0000AA");
 			}
 			dealer.setID_Dealer(id);
+			dealer.setName(nombre);
 			if (!cont.obtenerID_DEALER(dealer)) {
-				campoNombreDealer.getText();
-				
+				nombre = campoNombreDealer.getText();
+				dealer.setName(nombre);
+				if (cont.insertarDealer(dealer)) {
+					VentanaInicial vI=new VentanaInicial(cont);
+					vI.setVisible(true);
+					this.dispose();
+				} else {
+					JOptionPane.showMessageDialog(null, "NO se ha podido introducir correctamente");
+				}
 				
 			} else {
-				JOptionPane.showMessageDialog(null, "ID incorrecto");
+				JOptionPane.showMessageDialog(null, "ID existente");
 			}
 		}	
 		
