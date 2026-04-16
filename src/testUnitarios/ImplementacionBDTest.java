@@ -5,6 +5,8 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThrows;
 
+import java.time.LocalDate;
+
 import org.junit.Test;
 import modelo.*;
 
@@ -51,5 +53,58 @@ public class ImplementacionBDTest {
 			bd.comprobarUsuario(null);
 		});
 	}
+	@Test
+	public void testInsertarUsuario_assertEquals() {
+
+		User u = new User();
+		u.setDni("99999999A");
+		u.setName("testUser");
+		u.setPassword("1234");
+		u.setDate_of_birth(LocalDate.of(2000, 1, 1));
+		u.setBalance(100.0);
+
+		boolean resultado = bd.insertarUsuario(u);
+
+		assertEquals(true, resultado);
+	}
 }
+@Test
+public void testRepetirDNINoExiste_assertFalse() {
+
+	User u = new User();
+	u.setDni("11111111Z");
+
+	boolean existe = bd.repetirDNI(u);
+
+	assertFalse(existe);
+}
+
+@Test
+public void testObtenerDineroUsuarioInvalido_assertNull() {
+
+	User u = new User();
+	u.setName("usuario_invalido");
+	u.setPassword("wrong");
+
+	Integer dinero = null;
+
+	try {
+		int resultado = bd.obtenerDinero(u);
+		dinero = resultado; 
+	} catch (Exception e) {
+		dinero = null;
+	}
+
+	assertNull(dinero);
+}
+
+@Test
+public void testInsertarJuegoNull_assertThrows() {
+
+	assertThrows(NullPointerException.class, () -> {
+		bd.insertarJuego(null, null, null);
+	});
+	}
+}
+
 
