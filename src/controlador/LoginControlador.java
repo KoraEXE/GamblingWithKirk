@@ -2,6 +2,7 @@ package controlador;
 
 import java.util.ArrayList;
 
+import modelo.Dealer;
 import modelo.ImplementacionBD;
 import modelo.Play_On_Table;
 import modelo.Played;
@@ -68,5 +69,9 @@ public class LoginControlador {
 	
 	public boolean repetirDNI (User usuario) {
 		return dao.repetirDNI(usuario);
+	}
+	
+	public boolean obtenerID_DEALER (Dealer dealer) {
+		return dao.obtenerID_DEALER(dealer);
 	}
 }

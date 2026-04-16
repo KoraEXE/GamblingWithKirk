@@ -1,8 +1,5 @@
 package ventanas;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -10,7 +7,6 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import controlador.LoginControlador;
@@ -20,10 +16,7 @@ import modelo.User;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
-import javax.swing.JTextField;
 import javax.swing.JButton;
-import ventanas.VentanaBlackJack;
-import javax.swing.JComboBox;
 import javax.swing.JTable;
 
 
@@ -33,9 +26,6 @@ public class VentanaEstadisticas extends JFrame implements ActionListener {
 	private JPanel contentPane;
 	private LoginControlador cont;
 	private User elusuario;
-	private JLabel lblTitulo;
-	private JLabel lblDato1;
-	private JLabel lblDato4;
 	private JButton btnVolver;
 	private Play_On_Table table;
 	private Played played;

@@ -37,6 +37,8 @@ public class ImplementacionBD implements UsuarioDAO{
 
 	// Sentencias SQL Fucionales
 	
+	final String sqlIdDealer = "SELECT * FROM DEALER WHERE ID_DEALER = ?"; //Para leer el dealer
+	
 	final String sqlInsPlayed = "INSERT INTO PLAYED VALUES (?,?,?,?,?)";
 	final String sqlInsTablee = "INSERT INTO TABLEE VALUES (?,?)";
 	
@@ -155,6 +157,25 @@ public class ImplementacionBD implements UsuarioDAO{
 			System.out.println("Error al verificar credenciales: " + e.getMessage());
 		}
 		return dni;
+	}
+	
+	public boolean obtenerID_DEALER(Dealer dealer) {
+		boolean existe = false;
+		this.openConnection();
+		try {
+			stmt = con.prepareStatement(sqlIdDealer);
+			stmt.setString(1, dealer.getID_Dealer());
+			ResultSet resultado = stmt.executeQuery();
+			if (resultado.next()) {
+				existe = true;
+			}
+			resultado.close();
+			stmt.close();
+			con.close();
+		} catch (SQLException e) {
+			System.out.println("Error al verificar credenciales: " + e.getMessage());
+		}
+		return existe;
 	}
 	
 	public boolean repetirDNI(User usuario) {

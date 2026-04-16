@@ -17,4 +17,5 @@ public interface UsuarioDAO {
 	public boolean insertarMesa(Play_On_Table table);
 	public ArrayList<Played> obtenerHistorial(User usuario);
 	public boolean repetirDNI(User usuario);
+	public boolean obtenerID_DEALER(Dealer dealer);
 }

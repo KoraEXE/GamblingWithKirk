@@ -30,6 +30,7 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
+import java.awt.Color;
 
 public class VentanaBlackJack extends JDialog implements ActionListener {
 
@@ -74,6 +75,8 @@ public class VentanaBlackJack extends JDialog implements ActionListener {
 	//Stats para mostrar
 	private int vecesJugadas = 0; //realizado
 	private int maxCombo = 0;
+	private JLabel fondoo;
+	private JLabel textNombreCrupier;
 
 	public VentanaBlackJack(LoginControlador cont, User elusuario, Play_On_Table table, Played played) {
 		
@@ -91,6 +94,7 @@ public class VentanaBlackJack extends JDialog implements ActionListener {
 		this.setLocation(0, 0);
 
 		dineroJugador = new JLabel((String) null);
+		dineroJugador.setForeground(new Color(0, 255, 64));
 		dineroJugador.setHorizontalAlignment(SwingConstants.LEFT);
 		dineroJugador.setFont(new Font("Tahoma", Font.PLAIN, 28));
 		dineroJugador.setBounds(148, 131, 304, 44);
@@ -98,11 +102,13 @@ public class VentanaBlackJack extends JDialog implements ActionListener {
 		dineroJugador.setText(String.valueOf(elusuario.getBalance()));
 
 		textoDIneroJugador = new JLabel("Dinero");
+		textoDIneroJugador.setForeground(new Color(255, 255, 255));
 		textoDIneroJugador.setFont(new Font("Tahoma", Font.PLAIN, 28));
 		textoDIneroJugador.setBounds(23, 131, 115, 44);
 		contentPanel.add(textoDIneroJugador);
 
 		nombreJugador = new JLabel("");
+		nombreJugador.setForeground(new Color(255, 255, 255));
 		nombreJugador.setFont(new Font("Tahoma", Font.PLAIN, 28));
 		nombreJugador.setHorizontalAlignment(SwingConstants.LEFT);
 		nombreJugador.setBounds(148, 76, 304, 44);
@@ -110,6 +116,7 @@ public class VentanaBlackJack extends JDialog implements ActionListener {
 		nombreJugador.setText(elusuario.getName());
 
 		textoNombreJugador = new JLabel("Jugador:");
+		textoNombreJugador.setForeground(new Color(255, 255, 255));
 		textoNombreJugador.setFont(new Font("Tahoma", Font.PLAIN, 28));
 		textoNombreJugador.setBounds(23, 76, 115, 44);
 		contentPanel.add(textoNombreJugador);
@@ -121,9 +128,10 @@ public class VentanaBlackJack extends JDialog implements ActionListener {
 		Crupier2.setVisible(false);
 
 		sumaTotalReal = new JLabel("0");
+		sumaTotalReal.setForeground(new Color(255, 255, 255));
 		sumaTotalReal.setHorizontalAlignment(SwingConstants.CENTER);
 		sumaTotalReal.setFont(new Font("Tahoma", Font.BOLD, 20));
-		sumaTotalReal.setBounds(846, 383, 39, 31);
+		sumaTotalReal.setBounds(186, 246, 39, 31);
 		contentPanel.add(sumaTotalReal);
 		sumaTotalReal.setVisible(false);
 
@@ -155,12 +163,16 @@ public class VentanaBlackJack extends JDialog implements ActionListener {
 		Carta2.setVisible(false);
 		{
 			JLabel ComboText = new JLabel("Combo:");
+			ComboText.setBackground(new Color(255, 255, 255));
+			ComboText.setForeground(new Color(255, 255, 255));
 			ComboText.setBounds(23, 35, 82, 30);
 			ComboText.setFont(new Font("Tahoma", Font.BOLD, 18));
 			contentPanel.add(ComboText);
 		}
 
 		ComboIcon = new JLabel("?");
+		ComboIcon.setForeground(new Color(0, 0, 0));
+		ComboIcon.setBackground(new Color(255, 255, 255));
 		ComboIcon.setHorizontalAlignment(SwingConstants.CENTER);
 		ComboIcon.setBounds(103, 12, 68, 69);
 		ComboIcon.setFont(new Font("Tahoma", Font.PLAIN, 58));
@@ -183,56 +195,61 @@ public class VentanaBlackJack extends JDialog implements ActionListener {
 
 		BotonPedir = new JButton("Pedir");
 		BotonPedir.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		BotonPedir.setBounds(376, 588, 113, 43);
+		BotonPedir.setBounds(377, 650, 113, 43);
 		contentPanel.add(BotonPedir);
 		BotonPedir.setEnabled(false);
 
 		BotonParar = new JButton("Parar");
 		BotonParar.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		BotonParar.setBounds(515, 588, 113, 43);
+		BotonParar.setBounds(517, 650, 113, 43);
 		contentPanel.add(BotonParar);
 		BotonParar.setEnabled(false);
 
 		TextSuma = new JLabel("Suma Total:");
+		TextSuma.setForeground(new Color(255, 255, 255));
 		TextSuma.setHorizontalAlignment(SwingConstants.RIGHT);
 		TextSuma.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		TextSuma.setBounds(678, 425, 166, 31);
+		TextSuma.setBounds(0, 276, 166, 31);
 		contentPanel.add(TextSuma);
 
 		SumaTotal = new JLabel("0");
+		SumaTotal.setForeground(new Color(255, 255, 255));
 		SumaTotal.setHorizontalAlignment(SwingConstants.CENTER);
 		SumaTotal.setFont(new Font("Tahoma", Font.BOLD, 20));
-		SumaTotal.setBounds(846, 424, 39, 31);
+		SumaTotal.setBounds(186, 275, 39, 31);
 		contentPanel.add(SumaTotal);
 
 		TextoApostar = new JLabel("Cuanto quieres apostar?");
+		TextoApostar.setForeground(new Color(255, 255, 255));
 		TextoApostar.setHorizontalAlignment(SwingConstants.CENTER);
 		TextoApostar.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		TextoApostar.setBounds(354, 476, 294, 31);
+		TextoApostar.setBounds(354, 514, 294, 31);
 		contentPanel.add(TextoApostar);
 
 		Apuesta = new JTextField();
 		Apuesta.setHorizontalAlignment(SwingConstants.CENTER);
 		Apuesta.setText("Introduce la apuesta");
-		Apuesta.setBounds(417, 517, 171, 20);
+		Apuesta.setBounds(414, 567, 171, 20);
 		contentPanel.add(Apuesta);
 		Apuesta.setColumns(10);
 
 		botonJugar = new JButton("JUGAR");
-		botonJugar.setBounds(427, 542, 147, 36);
+		botonJugar.setBounds(428, 597, 147, 36);
 		contentPanel.add(botonJugar);
 
 
 		TextSumaCrupier = new JLabel("Suma Total Crupier:");
+		TextSumaCrupier.setForeground(new Color(255, 255, 255));
 		TextSumaCrupier.setHorizontalAlignment(SwingConstants.RIGHT);
 		TextSumaCrupier.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		TextSumaCrupier.setBounds(678, 384, 166, 31);
+		TextSumaCrupier.setBounds(10, 247, 166, 31);
 		contentPanel.add(TextSumaCrupier);
 
 		SumaTotalCrupier1 = new JLabel("0");
+		SumaTotalCrupier1.setForeground(new Color(255, 255, 255));
 		SumaTotalCrupier1.setHorizontalAlignment(SwingConstants.CENTER);
 		SumaTotalCrupier1.setFont(new Font("Tahoma", Font.BOLD, 20));
-		SumaTotalCrupier1.setBounds(846, 383, 39, 31);
+		SumaTotalCrupier1.setBounds(186, 246, 39, 31);
 		contentPanel.add(SumaTotalCrupier1);
 
 		TextoInfo = new JLabel("");
@@ -242,9 +259,21 @@ public class VentanaBlackJack extends JDialog implements ActionListener {
 		contentPanel.add(TextoInfo);
 		
 		TextNombreCrupier = new JLabel("Crupier:");
+		TextNombreCrupier.setForeground(new Color(255, 255, 255));
 		TextNombreCrupier.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		TextNombreCrupier.setBounds(1127, 53, 166, 28);
+		TextNombreCrupier.setBounds(1209, 105, 73, 28);
 		contentPanel.add(TextNombreCrupier);
+		
+		textNombreCrupier = new JLabel("");
+		textNombreCrupier.setForeground(Color.WHITE);
+		textNombreCrupier.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		textNombreCrupier.setBounds(1292, 105, 178, 28);
+		contentPanel.add(textNombreCrupier);
+		
+		fondoo = new JLabel("");
+		fondoo.setIcon(new ImageIcon("C:\\Users\\1dami\\eclipse-workspace\\GamblingWithKirk\\imagenes\\luigiJack.jpg"));
+		fondoo.setBounds(0, 0, 1522, 1077);
+		contentPanel.add(fondoo);
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setSize(screenSize);
 		this.setLocation(0, 0);

@@ -10,6 +10,13 @@ public class Dealer {
 		this.name = name;
 		this.balance = balance;
 	}
+	
+	public Dealer(String iD_Dealer) {
+		ID_Dealer = iD_Dealer;
+	}
+	
+	public Dealer() {
+	}
 
 	public String getID_Dealer() {
 		return ID_Dealer;
